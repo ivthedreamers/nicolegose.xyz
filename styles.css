@@ -1,0 +1,591 @@
+/* ============================================
+   NICOLE GOSÉ — nicolegose.xyz
+   Design System
+   ============================================ */
+
+/* VARIABLES */
+:root {
+  --bg:         #F7F7F5;
+  --primary:    #0D0D0D;
+  --red:        #DB0606;
+  --cyan:       #06DBDB;
+  --cyan-faint: rgba(6, 219, 219, 0.15);
+  --cyan-mid:   rgba(6, 219, 219, 0.5);
+  --grey:       #888888;
+  --max-width:  860px;
+  --font-sans:  'Inter', sans-serif;
+  --font-mono:  'SF Mono', 'Courier New', monospace;
+}
+
+/* RESET */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   GRID LINES — full page vertical rails
+   ============================================ */
+.grid-rail {
+  position: fixed;
+  top: 0;
+  width: 1px;
+  height: 100%;
+  background: var(--cyan-mid);
+  z-index: 0;
+  pointer-events: none;
+  left: 50%;
+}
+
+.grid-rail-left {
+  transform: translateX(calc(-1 * min(var(--max-width), 100vw) / 2));
+}
+
+.grid-rail-right {
+  top: 72px;
+  transform: translateX(calc(min(var(--max-width), 100vw) / 2));
+}
+
+/* ============================================
+   TYPOGRAPHY
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+
+.handwritten {
+  font-family: 'Caveat', cursive;
+  font-size: 1.4em;
+  color: var(--primary);
+  display: inline-block;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: block;
+}
+
+/* ============================================
+   LAYOUT
+   ============================================ */
+.section {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 80px 32px;
+}
+
+/* ============================================
+   DIVIDERS
+   ============================================ */
+.cyan-rule {
+  border: none;
+  border-top: 1px solid var(--cyan-mid);
+  margin: 0 32px;
+}
+
+.footer-rule {
+  border: none;
+  border-top: 1px solid var(--cyan-mid);
+  margin: 60px 32px 40px;
+}
+
+/* ============================================
+   NAV
+   ============================================ */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 0;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.nav-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+.wordmark {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-menu a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  text-decoration: none;
+  text-transform: lowercase;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-menu a:hover {
+  color: var(--primary);
+  border-bottom-color: var(--cyan);
+}
+
+.nav-cta {
+  color: var(--cyan) !important;
+  font-weight: 700 !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.nav-cta:hover {
+  color: var(--cyan) !important;
+  border-bottom: none !important;
+}
+
+.nav-cta-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-arrow {
+  height: 20px;
+  width: auto;
+  display: inline-block;
+}
+
+/* hamburger */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--primary);
+  transition: all 0.3s;
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  position: relative;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 100px 32px 80px;
+  overflow: visible;
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--red);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero-headline {
+  position: relative;
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: clamp(40px, 8vw, 80px);
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 32px;
+}
+
+.hero-dreamers {
+  display: block;
+  position: relative;
+  z-index: 1;
+  line-height: 0.95;
+}
+
+.hero-sub {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--primary);
+  margin-bottom: 24px;
+  max-width: 480px;
+}
+
+.hero-services {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+  margin-bottom: 40px;
+  text-transform: lowercase;
+}
+
+/* ============================================
+   HANDWRITTEN SVG IMAGES
+   ============================================ */
+.hw-img {
+  display: inline-block;
+  height: auto;
+  vertical-align: middle;
+}
+
+.hw-the-work {
+  width: 70%;
+  max-width: 600px;
+  min-width: 280px;
+  position: relative;
+  margin-top: -20px;
+  z-index: 2;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  background: transparent;
+  padding: 12px 28px;
+  text-decoration: none;
+  border: 1px solid var(--cyan);
+  transition: background 0.2s, color 0.2s, font-weight 0.1s;
+}
+
+.btn-primary:hover {
+  background: var(--cyan);
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.btn-secondary {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cyan-mid);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+  margin-top: 24px;
+}
+
+.btn-secondary:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+}
+
+.btn-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-disabled:hover {
+  color: var(--primary) !important;
+  border-color: var(--cyan-mid) !important;
+}
+
+/* ============================================
+   SOCIAL PROOF STRIP
+   ============================================ */
+.proof-strip {
+  text-align: center;
+  padding: 48px 32px;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.proof-quote {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(18px, 3vw, 24px);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.proof-attr {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+}
+
+/* ============================================
+   REFRAME SECTION
+   ============================================ */
+.reframe-body p { margin-bottom: 20px; max-width: 640px; }
+
+.reframe-statement {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.5;
+  margin: 32px 0 !important;
+}
+
+.reframe-statement .handwritten {
+  font-size: 1.3em;
+  color: var(--red);
+}
+
+/* ============================================
+   PURPOSE SECTION
+   ============================================ */
+.purpose-body p { margin-bottom: 20px; max-width: 640px; }
+
+.purpose-close {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+  margin-top: 32px !important;
+}
+
+/* ============================================
+   THREE PILLARS
+   ============================================ */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  margin-top: 40px;
+}
+
+.pillar { display: flex; flex-direction: column; }
+.pillar p { margin-bottom: 16px; font-size: 15px; }
+
+.pillar-title {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.pillar-reviews {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--cyan-mid);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.pillar-reviews blockquote {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--primary);
+  font-style: italic;
+}
+
+.pillar-reviews cite {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--grey);
+  font-style: normal;
+  margin-top: 6px;
+}
+
+/* ============================================
+   EVEN THE PROS
+   ============================================ */
+.pros-title {
+  font-size: 3em;
+  margin-bottom: 32px;
+}
+
+.pros-quote {
+  font-size: 18px;
+  line-height: 1.8;
+  max-width: 600px;
+  font-style: italic;
+}
+
+.pros-quote cite {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+  font-style: normal;
+  margin-top: 16px;
+}
+
+/* ============================================
+   CASE STUDIES
+   ============================================ */
+.works-title {
+  font-size: 3em;
+  margin-bottom: 24px;
+}
+
+.works-intro {
+  max-width: 640px;
+  margin-bottom: 48px;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.work-card { display: flex; flex-direction: column; }
+
+.work-title {
+  font-size: 2em;
+  margin-bottom: 8px;
+}
+
+.work-tags {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--grey);
+  margin-bottom: 16px;
+}
+
+.work-card p { font-size: 14px; line-height: 1.8; }
+.work-card .btn-secondary { margin-top: auto; padding-top: 24px; }
+
+/* ============================================
+   CLOSING CTA
+   ============================================ */
+.cta-close { text-align: center; }
+
+.cta-title {
+  font-size: 4em;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.cta-close p {
+  max-width: 480px;
+  margin: 0 auto 40px;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer { padding: 40px 32px 60px; }
+
+.footer-quote {
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto 40px;
+}
+
+.footer-quote-mark {
+  font-size: 48px;
+  color: var(--primary);
+  line-height: 0;
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 32px;
+}
+
+.footer-quote p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--primary);
+}
+
+.footer-signoff { text-align: center; margin: 0 auto; }
+
+.footer-from {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.footer-heart {
+  font-size: 16px;
+  color: var(--red);
+  margin-bottom: 8px;
+}
+
+.footer-name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--red);
+  margin-top: 8px;
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+
+.footer-sub {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.06em;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  .nav-menu {
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--bg);
+    padding: 32px;
+    border-top: 1px solid var(--cyan-mid);
+    z-index: 100;
+  }
+
+  .nav-menu.open { display: flex; }
+  .pillars-grid { grid-template-columns: 1fr; gap: 60px; }
+  .works-grid { grid-template-columns: 1fr; gap: 48px; }
+  .section { padding: 60px 24px; }
+  .hero { padding: 60px 24px; }
+}
