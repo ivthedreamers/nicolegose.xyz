@@ -16,95 +16,220 @@
       padding: 100px 32px 80px;
     }
 
+.wordmark {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: -0.02em;
+  color: var(--primary);
+  position: relative;
+}
+
+
+
     .review-headline {
       font-family: var(--font-sans);
       font-weight: 900;
       font-size: clamp(40px, 8vw, 80px);
-      line-height: 1.0;
+      line-height: 0.9;
       letter-spacing: -0.02em;
-      margin-bottom: 24px;
+      margin-bottom: 12px;
+    }
+
+    .hw-img {
+      display: inline-block;
+      height: auto;
+      vertical-align: middle;
+    }
+
+    .hw-their-exp {
+      width: 70%;
+      max-width: 600px;
+      min-width: 280px;
+      position: relative;
+      margin-top: -40px;
+      z-index: 2;
     }
 
     .review-sub {
       font-size: 16px;
-      line-height: 1.8;
-      max-width: 480px;
+      font-weight: 700;
+      line-height: 1.5;
       margin-bottom: 48px;
       color: var(--primary);
     }
 
-    /* REVIEWS GRID */
+    /* REVIEWS SECTION */
     .reviews-section {
       max-width: var(--max-width);
       margin: 0 auto;
-      padding: 0 32px 80px;
+      padding: 60px 32px 80px;
     }
 
-    .reviews-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 40px;
-      margin-top: 40px;
+    .reviews-category {
+      margin-bottom: 72px;
     }
 
-    .review-card {
+    /* CAROUSEL */
+    .carousel {
+      position: relative;
+      margin-top: 32px;
+      overflow: hidden;
+    }
+
+    .carousel-track {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 32px 0;
-      border-top: 1px solid var(--cyan-mid);
+      transition: transform 0.4s ease;
     }
 
-    .review-card blockquote {
-      font-size: 15px;
-      line-height: 1.8;
-      font-style: italic;
+    .carousel-slide {
+      min-width: 100%;
+      padding: 0 0 32px;
+    }
+
+    .review-service {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.06em;
       color: var(--primary);
-    }
-
-    .review-card cite {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      color: var(--grey);
-      font-style: normal;
-    }
-
-    .review-card .review-service {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.06em;
-      color: var(--cyan);
       text-transform: lowercase;
+      display: block;
+      margin-bottom: 16px;
     }
 
-    @media (max-width: 768px) {
-      .reviews-grid { grid-template-columns: 1fr; }
-      .review-hero { padding: 60px 24px; }
-      .reviews-section { padding: 0 24px 60px; }
+    .carousel-slide blockquote {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      font-style: normal;
+      color: var(--primary);
+      max-width: 640px;
+      margin-bottom: 24px;
     }
+
+    .carousel-slide cite {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: -0.01em;
+      color: var(--primary);
+      font-style: normal;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .carousel-slide .cite-role {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: #0D0D0D;
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+
+    .carousel-counter {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.02em;
+      color: var(--grey);
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .carousel-arrows {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .carousel-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      color: var(--primary);
+      padding: 0;
+      transition: color 0.2s;
+      line-height: 1;
+    }
+
+    .carousel-btn:hover { color: var(--cyan); }
+    .carousel-btn:disabled { opacity: 0.2; cursor: default; }
+
+    /* CLOSING CTA */
+    .review-cta {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px 80px;
+      text-align: center;
+    }
+
+    .review-cta-intro {
+      font-family: var(--font-sans);
+      font-weight: 700;
+      font-size: clamp(28px, 6vw, 64px);
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: block;
+      line-height: 1.0;
+    }
+
+    .review-cta p {
+      font-size: 15px;
+      color: var(--grey);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    .review-cta {
+      padding-top: 80px;
+    }
+
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--cyan-mid);
+      margin: 0 0 72px;
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+      .review-hero { padding: 60px 24px; }
+      .reviews-section { padding: 60px 24px 60px; }
+      .review-cta { padding: 60px 24px 60px; }
+      .carousel-slide blockquote { font-size: 13px; }
+    
   </style>
 </head>
 <body>
 
   <!-- GRID RAILS -->
-  <div class="grid-rail grid-rail-left"></div>
-  <div class="grid-rail grid-rail-right"></div>
+    <div class="grid-rail grid-rail-left"></div>
+    <div class="grid-rail grid-rail-right"></div>
 
   <!-- NAV -->
   <header class="nav">
-     <a href="/" style="text-decoration:none;">
-      <img src="assets/images/initials.png" alt="Nicole Gosé" class="nav-logo">
-    </a>
+    <div class="wordmark">The Dreamer Lab.</div>
     <button class="hamburger" id="hamburger" aria-label="open menu">
       <span></span><span></span><span></span>
     </button>
     <nav class="nav-menu" id="nav-menu">
-      <a href="/work">work</a>
-      <a href="/services">services</a>
-      <a href="/about">about</a>
-      <a href="/resources">resources</a>
-      <a href="/contact" class="nav-cta">let's connect</a>
+      <a href="/review.html">reviews</a>
+      <a href="http://linktr.ee/4thedreamers">resources</a>
+      <a href="https://www.instagram.com/ngg.photo/" class="nav-cta">let's connect</a>
     </nav>
   </header>
 
@@ -112,122 +237,161 @@
   <section class="review-hero">
     <span class="section-label">// WHAT THEY'RE SAYING</span>
     <h1 class="review-headline">
-      don't take<br>
-      <span class="handwritten">my word for it.</span>
+      straight from<br>
+      <img src="assets/writing/their-exp.svg" alt="their experiences." class="hw-img hw-their-exp">
     </h1>
-    <p class="review-sub">these are the words of dreamers i've had the honor of working with. if our work together made an impact, i'd love to hear about it.</p>
-    <a href="https://tally.so/r/ja9jB4" target="_blank" class="btn-primary">→ leave a review</a>
+    <p class="review-sub">these are the words of dreamers i've had the honor of working with.<br>if our work together made an impact, i'd love to hear about it.</p>
   </section>
 
-  <hr class="cyan-rule" />
+   <hr class="section-divider" />
 
   <!-- REVIEWS -->
   <section class="reviews-section">
-    <p class="section-label">// BRAND STRATEGY & DESIGN</p>
-    <div class="reviews-grid">
 
-      <div class="review-card">
-        <span class="review-service">brand strategy · design systems</span>
-        <blockquote>"working with Nicole on our presentation template system was one of the most impactful design investments we've made. she brought both creative rigor and strategic thinking to the project — the result was a scalable, intuitive system that our teams easily adopted and continue to use. the value has far outlasted the project itself."</blockquote>
-        <cite>— Shereen, SVP of Marketing · Sambazon</cite>
+    <!-- BRAND STRATEGY & DESIGN -->
+    <div class="reviews-category">
+      <p class="section-label">// BRAND STRATEGY & DESIGN</p>
+      <div class="carousel">
+        <div class="carousel-track">
+
+          <div class="carousel-slide">
+            <span class="review-service">brand strategy · design systems</span>
+            <blockquote>"working with Nicole on our presentation template system was one of the most impactful design investments we've made. she brought both creative rigor and strategic thinking to the project — the result was a scalable, intuitive system that our teams easily adopted and continue to use. the value has far outlasted the project itself."</blockquote>
+            <cite>Shereen</cite><span class="cite-role">// SVP of Marketing · Sambazon</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">brand identity</span>
+            <blockquote>"i am so pleased with the branding package that Nicole and her team created for me. she is very thoughtful, intentional, and truly knows how to make your ideas come to life. Nicole patiently works with you providing many options until you are completely satisfied and the product feels authentic to you and your brand!"</blockquote>
+            <cite>Sarah</cite><span class="cite-role">// Founder · Linden</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">web design · print</span>
+            <blockquote>"the word of Nicole's talents came from a friend and fellow author. she handled it masterfully and even helped with content and revisions. Nicole is a master web designer. had us up and running within hours and is always available whenever i come calling. need i say more?"</blockquote>
+           <cite>Steve</cite><span class="cite-role">// CEO · West Coast Creative Endeavors Inc.</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">brand identity · design</span>
+            <blockquote>"i've had the pleasure of working with Nicole for years, and it's been an amazing experience every single time. she's incredibly easy to collaborate with, flexible, honest, and deeply understanding. Nicole truly goes above and beyond to make the process seamless and enjoyable."</blockquote>
+            <cite>Isaac</cite><span class="cite-role">// Founder · Saith, Inc.</span>
+          </div>
+
+        </div>
+        <div class="carousel-controls">
+          <span class="carousel-counter"></span>
+          <div class="carousel-arrows">
+            <button class="carousel-btn prev" aria-label="previous">←</button>
+            <button class="carousel-btn next" aria-label="next">→</button>
+          </div>
+        </div>
       </div>
-
-      <div class="review-card">
-        <span class="review-service">brand identity</span>
-        <blockquote>"i am so pleased with the branding package that Nicole and her team created for me. she is very thoughtful, intentional, and truly knows how to make your ideas come to life. Nicole patiently works with you providing many options until you are completely satisfied and the product feels authentic to you and your brand!"</blockquote>
-        <cite>— Sarah, Founder · Linden</cite>
-      </div>
-
-      <div class="review-card">
-        <span class="review-service">web design · print</span>
-        <blockquote>"the word of Nicole's talents came from a friend and fellow author. she handled it masterfully and even helped with content and revisions. Nicole is a master web designer. had us up and running within hours and is always available whenever i come calling. need i say more?"</blockquote>
-        <cite>— Steve, CEO · West Coast Creative Endeavors Inc.</cite>
-      </div>
-
-      <div class="review-card">
-        <span class="review-service">brand identity · design</span>
-        <blockquote>"i've had the pleasure of working with Nicole for years, and it's been an amazing experience every single time. she's incredibly easy to collaborate with, flexible, honest, and deeply understanding. Nicole truly goes above and beyond to make the process seamless and enjoyable."</blockquote>
-        <cite>— Isaac, Founder · Saith, Inc.</cite>
-      </div>
-
     </div>
 
-    <hr class="cyan-rule" style="margin: 60px 0;" />
+    <hr class="section-divider" />
 
-    <p class="section-label">// VISUAL STORYTELLING</p>
-    <div class="reviews-grid">
+    <!-- VISUAL STORYTELLING -->
+    <div class="reviews-category">
+      <p class="section-label">// VISUAL STORYTELLING</p>
+      <div class="carousel">
+        <div class="carousel-track">
 
-      <div class="review-card">
-        <span class="review-service">airbnb experience photography</span>
-        <blockquote>"working with Nicole was such a joy! she was incredibly flexible and her communication was clear and friendly from the start. Nicole beautifully captured the essence of the outdoor yoga class — the energy, the laughter, the community. you can truly feel the joy in every photo."</blockquote>
-        <cite>— Laura, Airbnb Experience host · Soulfish Yoga</cite>
+          <div class="carousel-slide">
+            <span class="review-service">airbnb experience photography</span>
+            <blockquote>"working with Nicole was such a joy! she was incredibly flexible and her communication was clear and friendly from the start. Nicole beautifully captured the essence of the outdoor yoga class — the energy, the laughter, the community. you can truly feel the joy in every photo."</blockquote>
+            <cite>Laura</cite><span class="cite-role">// Airbnb Experience host · Soulfish Yoga</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">airbnb experience photography</span>
+            <blockquote>"Nicole made the photo shoot experience such a joy. she puts such intentional care into making her guests feel seen and valued. hearing more about her work, you can tell she's not just a photographer, she's a designer!"</blockquote>
+            <cite>Nadia</cite><span class="cite-role">// Airbnb host · San Diego</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">airbnb experience photography</span>
+            <blockquote>"Nicole was an absolute pleasure to work with. she came in knowing exactly what she wanted to capture and did just that. everything felt natural and flowed well. the photos tell a story start to finish. she was also able to capture the fun and comfortable essence and vibe that i try to bring to my studio."</blockquote>
+            <cite>Janna</cite><span class="cite-role">// Airbnb Experience host · Private Pottery</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">airbnb experience photography</span>
+            <blockquote>"Nicole was incredibly easy-going and professional throughout the entire process. she captured stunning photos for our Airbnb experience, perfectly aligning with our requests. we couldn't be happier with the results!"</blockquote>
+            <cite>Francesco & Adisa</cite><span class="cite-role">// Airbnb Experience hosts · Farm to Fork</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">airbnb home photography</span>
+            <blockquote>"Nicole was an absolute joy to work with. she is professional and has a true creative eye. she made my Airbnb look amazing. cannot thank her enough and will be calling her in the future for my professional photography needs."</blockquote>
+            <cite>Marissa</cite><span class="cite-role">// Airbnb Home host · Tranquil Poolside Studio</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">airbnb experience photography</span>
+            <blockquote>"5 stars! she absolutely nailed it. the photos were gorgeous and really captured the spirit of the experience. super easy to work with and a pleasure to have along."</blockquote>
+            <cite>Matthew Granger Cosby</cite><span class="cite-role">// Airbnb Experience host · Gaia Tour</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">sunset shoot</span>
+            <blockquote>"fantastic golden hour shoot! Nicole was amazing. she was thoughtful and brought bubbles for our toddler, a towel, and played his favorite music! she made everyone so comfortable and captured our memories even more beautifully than we could've imagined."</blockquote>
+            <cite>Julia</cite><span class="cite-role">// Sunset Shoot guest</span>
+          </div>
+
+          <div class="carousel-slide">
+            <span class="review-service">headshot photography</span>
+            <blockquote>"Nicole was amazing to work with. she captured my photo at the marketing event in a way that felt elevated, clean, and truly aligned with my brand. super professional, great direction, and the photos came out polished and high quality perfect for my business and marketing."</blockquote>
+            <cite>Shilo Hope</cite><span class="cite-role">// Airbnb Service host · Massage Therapist</span>
+          </div>
+
+        </div>
+        <div class="carousel-controls">
+          <span class="carousel-counter"></span>
+          <div class="carousel-arrows">
+            <button class="carousel-btn prev" aria-label="previous">←</button>
+            <button class="carousel-btn next" aria-label="next">→</button>
+          </div>
+        </div>
       </div>
-
-      <div class="review-card">
-        <span class="review-service">airbnb experience photography</span>
-        <blockquote>"Nicole made the photo shoot experience such a joy. she puts such intentional care into making her guests feel seen and valued. hearing more about her work, you can tell she's not just a photographer, she's a designer!"</blockquote>
-        <cite>— Nadia, Airbnb host · San Diego</cite>
-      </div>
-
-      <div class="review-card">
-        <span class="review-service">airbnb experience photography</span>
-        <blockquote>"Nicole was an absolute pleasure to work with. she came in knowing exactly what she wanted to capture and did just that. everything felt natural and flowed well. the photos tell a story start to finish. she was also able to capture the fun and comfortable essence and vibe that i try to bring to my studio."</blockquote>
-        <cite>— Janna, Airbnb Experience host · Private Pottery</cite>
-      </div>
-
-      <div class="review-card">
-        <span class="review-service">airbnb experience photography</span>
-        <blockquote>"Nicole was incredibly easy-going and professional throughout the entire process. she captured stunning photos for our Airbnb experience, perfectly aligning with our requests. we couldn't be happier with the results!"</blockquote>
-        <cite>— Francesco & Adisa, Airbnb Experience hosts · Farm to Fork</cite>
-      </div>
-
-      <div class="review-card">
-        <span class="review-service">airbnb home photography</span>
-        <blockquote>"Nicole was an absolute joy to work with. she is professional and has a true creative eye. she made my Airbnb look amazing. cannot thank her enough and will be calling her in the future for my professional photography needs."</blockquote>
-        <cite>— Marissa, Airbnb Home host</cite>
-      </div>
-
-      <div class="review-card">
-        <span class="review-service">airbnb experience photography</span>
-        <blockquote>"5 stars! she absolutely nailed it. the photos were gorgeous and really captured the spirit of the experience. super easy to work with and a pleasure to have along."</blockquote>
-        <cite>— Matthew Granger Cosby, Airbnb Experience host · Gaia Tour</cite>
-      </div>
-
-      <div class="review-card">
-        <span class="review-service">sunset shoot</span>
-        <blockquote>"fantastic golden hour shoot! Nicole was amazing. she was thoughtful and brought bubbles for our toddler, a towel, and played his favorite music! she made everyone so comfortable and captured our memories even more beautifully than we could've imagined."</blockquote>
-        <cite>— Julia, Little Rock AR · Sunset Shoot</cite>
-      </div>
-
-      <div class="review-card">
-        <span class="review-service">headshot photography</span>
-        <blockquote>"Nicole was amazing to work with. she captured my photo at the marketing event in a way that felt elevated, clean, and truly aligned with my brand. super professional, great direction, and the photos came out polished and high quality perfect for my business and marketing."</blockquote>
-        <cite>— Shilo Hope, Honolulu HI</cite>
-      </div>
-
     </div>
 
-    <hr class="cyan-rule" style="margin: 60px 0;" />
+    <hr class="section-divider" />
 
-    <p class="section-label">// WORKSHOPS & MENTORSHIP</p>
-    <div class="reviews-grid">
+    <!-- WORKSHOPS & MENTORSHIP -->
+    <div class="reviews-category">
+      <p class="section-label">// WORKSHOPS & MENTORSHIP</p>
+      <div class="carousel">
+        <div class="carousel-track">
 
-      <div class="review-card">
-        <span class="review-service">ai-powered brand strategy · mentorship</span>
-        <blockquote>"a truly valuable mentoring experience with Nicole. she's especially strong at breaking down complex AI topics in UX and making them practical and actionable. after our session, i felt more confident and had a much more systematic approach to using AI in my work. highly recommend Nicole as a mentor who delivers real, usable skills — not just in theory."</blockquote>
-        <cite>— Tati, Product Designer</cite>
+          <div class="carousel-slide">
+            <span class="review-service">ai-powered brand strategy · mentorship</span>
+            <blockquote>"a truly valuable mentoring experience with Nicole. she's especially strong at breaking down complex AI topics in UX and making them practical and actionable. after our session, i felt more confident and had a much more systematic approach to using AI in my work. highly recommend Nicole as a mentor who delivers real, usable skills — not just in theory."</blockquote>
+            <cite>Tati</cite><span class="cite-role">// Product Designer</span>
+          </div>
+
+        </div>
+        <div class="carousel-controls">
+          <span class="carousel-counter"></span>
+          <div class="carousel-arrows">
+            <button class="carousel-btn prev" aria-label="previous">←</button>
+            <button class="carousel-btn next" aria-label="next">→</button>
+          </div>
+        </div>
       </div>
-
     </div>
 
   </section>
 
-  <hr class="cyan-rule" />
-
+  <hr class="section-divider" />
   <!-- CLOSING CTA -->
-  <section class="section cta-close">
-    <h2 class="handwritten cta-title">your turn.</h2>
-    <p>worked together? i'd love to hear about your experience.</p>
+   <br>
+  <section class="section cta-close review-cta">
+    <span class="review-cta-intro">i'd appreciate it if you'd</span>
+    <h1 class="review-headline">
+      <img src="assets/writing/share-yours.svg" alt="share yours!" class="hw-img hw-their-exp">
+    </h1>
+    <p>(it'll help others determine if i'm a good fit for them as well!)</p>
     <a href="https://tally.so/r/ja9jB4" target="_blank" class="btn-primary">→ leave a review</a>
   </section>
 
@@ -248,12 +412,57 @@
   </footer>
 
   <script>
+    // hamburger
     const hamburger = document.getElementById('hamburger');
     const navMenu = document.getElementById('nav-menu');
     hamburger.addEventListener('click', () => {
       navMenu.classList.toggle('open');
       hamburger.classList.toggle('active');
     });
+
+    // carousel
+    document.querySelectorAll('.carousel').forEach(carousel => {
+      const track = carousel.querySelector('.carousel-track');
+      const slides = carousel.querySelectorAll('.carousel-slide');
+      const prev = carousel.querySelector('.prev');
+      const next = carousel.querySelector('.next');
+      const counter = carousel.querySelector('.carousel-counter');
+      const dotsContainer = carousel.querySelector('.carousel-dots');
+      let cur = 0;
+
+      const dots = dotsContainer ? dotsContainer.querySelectorAll('.carousel-dot') : [];
+
+      function update() {
+        track.style.transform = `translateX(-${cur * 100}%)`;
+        counter.innerHTML = `<span style="color:var(--cyan);font-weight:700;font-size:20px;">${cur + 1}</span><span style="font-size:10px;"> / ${slides.length}</span>`;
+        prev.disabled = cur === 0;
+        next.disabled = cur === slides.length - 1;
+        dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+      }
+
+      prev.addEventListener('click', () => { if (cur > 0) { cur--; update(); } });
+      next.addEventListener('click', () => { if (cur < slides.length - 1) { cur++; update(); } });
+
+      update();
+    });
+
+      window.addEventListener('load', () => {
+      function setWordmarkLine() {
+        const wordmark = document.querySelector('.wordmark');
+        const firstNavItem = document.querySelector('.nav-menu a:first-child');
+        if (!wordmark || !firstNavItem) return;
+
+        const wordmarkLeft = wordmark.getBoundingClientRect().left;
+        const navItemLeft = firstNavItem.getBoundingClientRect().left;
+        const lineWidth = navItemLeft - wordmarkLeft;
+
+        wordmark.style.setProperty('--line-width', lineWidth + 'px');
+      }
+
+      setWordmarkLine();
+      window.addEventListener('resize', setWordmarkLine);
+    });
+
   </script>
 
 </body>
