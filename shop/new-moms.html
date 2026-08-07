@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>For New Moms — All Things Good</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/png" href="assets/ng-favicon.png" />
+  <link rel="apple-touch-icon" href="assets/ng-favicon.png" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <meta name="description" content="A curated gift guide for new moms — sorted by baby's age and need. The under-the-radar essentials that never make the registry, recommended by Nicole Gosé." />
+  <meta name="author" content="Nicole Gosé" />
+  <meta property="og:title" content="For New Moms — All Things Good" />
+  <meta property="og:description" content="A first-baby gift edit, sorted by age & need. Beyond the registry." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://allthingsgood.xyz/new-moms.html" />
+</head>
+<body data-page="new-moms">
+
+  <!-- ===================== TOP NAV ===================== -->
+  <header class="topbar">
+    <div class="topbar__left">
+      <a class="wordmark" href="/">All Things Good.</a>
+      <div class="topbar__meta">
+        <span class="label">The New Mom Edit</span>
+        <span class="label">Beyond the Registry</span>
+      </div>
+    </div>
+    <div class="topbar__right">
+      <nav class="nav-links" aria-label="primary">
+        <a href="/">shop</a>
+        <a href="new-moms.html">new moms</a>
+        <a href="https://linktr.ee/4thedreamers" target="_blank" rel="noopener">links</a>
+      </nav>
+      <button class="menu-toggle label" id="menuBtnMobile" aria-label="open menu">Menu</button>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <button class="mobile-close" id="mobileClose" aria-label="close menu">&times;</button>
+    <a href="/">shop</a>
+    <a href="new-moms.html">new moms</a>
+    <a href="https://linktr.ee/4thedreamers" target="_blank" rel="noopener">links</a>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap">
+      <p class="hero__kicker label label--accent">A Curated Edit · For First-Time Moms</p>
+      <h1 class="hero__title">For New Moms<sup id="heroCount">(0)</sup></h1>
+      <p class="hero__lede">for a dear friend expecting her first baby. these are the pieces i'd gift beyond the registry — sorted by <em>baby's age</em>, filtered by what she actually needs.</p>
+      <p class="disclosure">As an Amazon Associate I earn from qualifying purchases. These are affiliate links — I may earn a small commission at no cost to you, and I only include things I'd truly recommend to a friend.</p>
+    </div>
+  </section>
+
+  <!-- ===================== TOOLBAR ===================== -->
+  <div class="toolbar">
+    <div class="toolbar__inner">
+      <div class="chips" id="filterChips" role="group" aria-label="filter by need"></div>
+      <div class="toolbar__right">
+        <div class="select-wrap">
+          <select class="sort-select" id="sortSelect" aria-label="sort products">
+            <option value="featured">Featured</option>
+            <option value="newest">Newest</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+            <option value="az">A–Z</option>
+          </select>
+        </div>
+        <div class="seg" role="group" aria-label="view">
+          <button id="viewGrid" aria-pressed="true">Grid</button>
+          <button id="viewList" aria-pressed="false">List</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ROWS (by age stage, rendered by app.js) ===================== -->
+  <main class="rows wrap" id="rows"></main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer__grid">
+        <div class="footer__col">
+          <p class="footer__mark">All Things Good.</p>
+          <p>The new mom edit is a living list — I add to it as I find things worth passing along. Curated with love by Nicole Gosé.</p>
+        </div>
+        <div class="footer__col footer__links">
+          <p class="label" style="margin-bottom:6px;">Explore</p>
+          <a href="/">Shop by room</a>
+          <a href="new-moms.html">For new moms</a>
+          <a href="https://linktr.ee/4thedreamers" target="_blank" rel="noopener">All my links</a>
+          <a href="https://nicolegose.xyz" target="_blank" rel="noopener">nicolegose.xyz</a>
+        </div>
+      </div>
+      <p class="footer__fine">As an Amazon Associate I earn from qualifying purchases. © 2025 All Things Good · a Dreamer Lab project.</p>
+    </div>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
