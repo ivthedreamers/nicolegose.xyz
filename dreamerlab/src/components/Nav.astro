@@ -1,0 +1,42 @@
+---
+const links = [
+  { href: '/work', label: 'work' },
+  { href: '/services', label: 'services' },
+  { href: '/reviews', label: 'reviews' },
+  { href: '/about', label: 'about' },
+];
+---
+<header class="nav">
+  <div class="wordmark"><a href="/">Dreamer Lab.</a></div>
+  <button class="hamburger" id="hamburger" aria-label="open menu">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="nav-menu" id="nav-menu">
+    {links.map((l) => <a href={l.href}>{l.label}</a>)}
+    <a href="/contact" class="nav-cta">let's talk</a>
+  </nav>
+</header>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('nav-menu');
+  hamburger?.addEventListener('click', () => {
+    navMenu?.classList.toggle('open');
+    hamburger.classList.toggle('active');
+  });
+
+  // wordmark underline — stretch from screen edge to first nav item / hamburger
+  function setWordmarkLine() {
+    const wordmark = document.querySelector('.wordmark') as HTMLElement | null;
+    const firstNavItem = document.querySelector('.nav-menu a:first-child');
+    const isMobile = window.innerWidth <= 860;
+    const target = isMobile ? hamburger : firstNavItem;
+    if (!wordmark || !target) return;
+    const wordmarkLeft = wordmark.getBoundingClientRect().left;
+    const targetLeft = target.getBoundingClientRect().left;
+    wordmark.style.setProperty('--line-left', -wordmarkLeft + 'px');
+    wordmark.style.setProperty('--line-width', targetLeft + 'px');
+  }
+  window.addEventListener('load', setWordmarkLine);
+  window.addEventListener('resize', setWordmarkLine);
+</script>

@@ -1,0 +1,38 @@
+# Deploys the Dreamer Lab site to GitHub Pages.
+#
+# NOTE: This workflow only runs once this `dreamerlab/` folder is the ROOT of its own
+# repository (e.g. ivthedreamers/thedreamerlab). GitHub only executes workflows found at
+# a repo's root `.github/workflows/`, so while this lives inside the nicolegose.xyz repo it
+# stays dormant and cannot affect the live nicolegose.xyz Pages site.
+name: Deploy Dreamer Lab to Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: withastro/action@v3
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

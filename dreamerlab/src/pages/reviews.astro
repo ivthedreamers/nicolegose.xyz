@@ -1,0 +1,101 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Carousel from '../components/Carousel.astro';
+
+const categories = [
+  {
+    label: 'BRAND STRATEGY & DESIGN',
+    reviews: [
+      { service: 'brand strategy · design systems', quote: "working with Nicole on our presentation template system was one of the most impactful design investments we've made. she brought both creative rigor and strategic thinking to the project — the result was a scalable, intuitive system that our teams easily adopted and continue to use. the value has far outlasted the project itself.", name: 'Shereen', role: '// SVP of Marketing · Sambazon' },
+      { service: 'brand identity', quote: "i am so pleased with the branding package that Nicole and her team created for me. she is very thoughtful, intentional, and truly knows how to make your ideas come to life. Nicole patiently works with you providing many options until you are completely satisfied and the product feels authentic to you and your brand!", name: 'Sarah', role: '// Founder · Linden' },
+      { service: 'web design · print', quote: "the word of Nicole's talents came from a friend and fellow author. she handled it masterfully and even helped with content and revisions. Nicole is a master web designer. had us up and running within hours and is always available whenever i come calling. need i say more?", name: 'Steve', role: '// CEO · West Coast Creative Endeavors Inc.' },
+      { service: 'brand identity · design', quote: "i've had the pleasure of working with Nicole for years, and it's been an amazing experience every single time. she's incredibly easy to collaborate with, flexible, honest, and deeply understanding. Nicole truly goes above and beyond to make the process seamless and enjoyable.", name: 'Isaac', role: '// Founder · Saith, Inc.' },
+    ],
+  },
+  {
+    label: 'VISUAL STORYTELLING',
+    reviews: [
+      { service: 'airbnb experience photography', quote: "working with Nicole was such a joy! she was incredibly flexible and her communication was clear and friendly from the start. Nicole beautifully captured the essence of the outdoor yoga class — the energy, the laughter, the community. you can truly feel the joy in every photo.", name: 'Laura', role: '// Airbnb Experience host · Soulfish Yoga' },
+      { service: 'airbnb experience photography', quote: "Nicole made the photo shoot experience such a joy. she puts such intentional care into making her guests feel seen and valued. hearing more about her work, you can tell she's not just a photographer, she's a designer!", name: 'Nadia', role: '// Airbnb host · San Diego' },
+      { service: 'airbnb experience photography', quote: "Nicole was an absolute pleasure to work with. she came in knowing exactly what she wanted to capture and did just that. everything felt natural and flowed well. the photos tell a story start to finish. she was also able to capture the fun and comfortable essence and vibe that i try to bring to my studio.", name: 'Janna', role: '// Airbnb Experience host · Private Pottery' },
+      { service: 'airbnb experience photography', quote: "Nicole was incredibly easy-going and professional throughout the entire process. she captured stunning photos for our Airbnb experience, perfectly aligning with our requests. we couldn't be happier with the results!", name: 'Francesco & Adisa', role: '// Airbnb Experience hosts · Farm to Fork' },
+      { service: 'airbnb home photography', quote: "Nicole was an absolute joy to work with. she is professional and has a true creative eye. she made my Airbnb look amazing. cannot thank her enough and will be calling her in the future for my professional photography needs.", name: 'Marissa', role: '// Airbnb Home host · Tranquil Poolside Studio' },
+      { service: 'airbnb experience photography', quote: "5 stars! she absolutely nailed it. the photos were gorgeous and really captured the spirit of the experience. super easy to work with and a pleasure to have along.", name: 'Matthew Granger Cosby', role: '// Airbnb Experience host · Gaia Tour' },
+      { service: 'sunset shoot', quote: "fantastic golden hour shoot! Nicole was amazing. she was thoughtful and brought bubbles for our toddler, a towel, and played his favorite music! she made everyone so comfortable and captured our memories even more beautifully than we could've imagined.", name: 'Julia', role: '// Sunset Shoot guest' },
+      { service: 'headshot photography', quote: "Nicole was amazing to work with. she captured my photo at the marketing event in a way that felt elevated, clean, and truly aligned with my brand. super professional, great direction, and the photos came out polished and high quality perfect for my business and marketing.", name: 'Shilo Hope', role: '// Airbnb Service host · Massage Therapist' },
+      { service: 'airbnb experience photography', quote: "Nicole is an amazing photographer! she has a subtle way of capturing the best shots and moments! she was so easy to work with and had a nice balance of guidance vs. letting us find our rhythm and natural comfort. she was extremely kind and patient and went above and beyond to make our photoshoot a success!", name: 'Brent', role: '// Airbnb Experience host · Sound Bath Healing & Yoga' },
+      { service: 'wedding photography', quote: "i'm a traveling photographer, and i needed an assistant for a wedding in San Diego. Nicole came highly recommended, and i lucked out that she was available! it was like we had worked together for years. she was very kind and joyful when relating to the guests and intuitive as an assistant and such a strong photographer with an artistic eye. she added so many amazing images, and i would highly recommend her in any of her design branches. she's a treasure!", name: 'Monique', role: '// Professional Wedding Photographer' },
+      { service: 'sunset shoot', quote: "we booked a golden hour beach family photo session with Nicole and it was such a special experience. the photos are artistic, natural, and nothing like the standard cookie-cutter beach portraits (in the best way) just us having fun together, beautifully captured. HIGHLY recommend!", name: 'Janelle', role: '// Sunset Shoot guest' },
+      { service: 'headshot photography', quote: "i had a headshot photo session with Nicole. she made the entire process easy and comfortable. the pictures came out amazing. she was also great at the editing process. she picked the exact ones i would have. i highly recommend Nicole for any of your photography needs!", name: 'Sara', role: '// CEO · Sara Mascara' },
+      { service: 'chasing sunsets', quote: "did a family beach photo shoot with our 3 month old and Nicole was so amazing! she was patient when our baby needed breaks and put together a beautiful mood board for inspo. she was very professional and easy going. would recommend to anyone and we look forward to booking again in the future!", name: 'Kyle', role: '// Chasing Sunsets · Santa Rosa, CA' },
+      { service: 'photo + video shoot', quote: "amazing experience, beyond what i expected! everyone who visits San Diego and wants good memories from a shoot should try it. Nicole is very professional and friendly — she knew how to guide my daughter and catch all of our natural moments to make a beautiful video. her delivery was also fast. we're so happy we got to enjoy the shoot and came away with such lovely memories. great work!", name: 'Kelvin', role: '// Visual storytelling guest · China' },
+      { service: 'golden hues', quote: "Nicole was so sweet and patient to take me to all these different spots and try to get shots i liked. she was super easy to talk to and collaborate with! would do it again! i already got to see a lot of the photos, but i can't wait to see the end result!", name: 'Baylee', role: '// Golden Hues guest' },
+      { service: 'golden hues', quote: "Nicole was amazing. she was personal and easy to get along with. we had a lot of fun hanging out while getting great shots and i can't wait to see how they all turned out! will for sure book with her again when i come back into town!", name: 'Syd', role: '// Golden Hues · Saint Paul, MN' },
+      { service: 'golden hues · sunset shoot', quote: "we booked the Sunset Shoot with Nicole for our family portraits with our 8-month old, and she was fantastic from start to finish. she came fully prepared with thoughtful ways to keep our little one engaged, which made the experience more relaxed & fun. we love her storytelling, lifestyle approach to photography, and she absolutely delivered; every photo felt natural, warm & genuine. we also added the video reel and she captured our time at the beach so beautifully — it's something we'll cherish for years. even more impressive was her turnaround time: edited photos & video reel by Sunday evening after a Friday shoot. we would absolutely book Nicole again.", name: 'Lina', role: '// Golden Hues · Los Angeles, CA' },
+      { service: 'good times captured', quote: "Nicole was awesome! the video brought me to tears. having children and grandchildren thousands of miles apart, it was so special that she was able to capture the moments. she was understanding and great with the young ones. i could not believe how quickly she had our photos and video to us.", name: 'Collyne', role: '// Good Times Captured · Middletown, DE' },
+      { service: 'golden hues', quote: "Nicole is fantastic! she was very easy to work with and fit right into our group. she made everything seem effortless and the shoot flowed smoothly throughout our experience. i would highly recommend her!", name: 'Brian', role: '// Golden Hues · Greenwich, CT' },
+      { service: 'good times captured', quote: "a nice person who made me feel comfortable at the photo shoot.", name: 'Alejandro Roman', role: '// Good Times Captured · Tijuana, Mexico' },
+      { service: 'good times captured', quote: "Nicole was wonderful to work with — she knows her posing and is very personable. would definitely work with her again!", name: 'Chef Patti', role: '// Good Times Captured' },
+      { service: 'good times captured', quote: "Nicole was great! she's a pro and i love her work!", name: 'Maya', role: '// Good Times Captured · San Diego, CA' },
+      { service: 'good times captured', quote: "Nicole was patient, encouraging and truly attentive to small details like posture, angles and expression. her professionalism stood out from start to finish — she never felt rushed and made sure we captured a variety of looks to choose from. she created a comfortable environment, making the whole experience easy and enjoyable. highly recommend, especially if you don't have much experience in front of the camera.", name: 'Karen', role: '// Good Times Captured' },
+      { service: 'good times captured', quote: "Nicole was friendly and professional! she made me feel comfortable and at ease. great experience!", name: 'Vanessa', role: '// Good Times Captured · San Diego, CA' },
+      { service: 'good times captured', quote: "Nicole was such a joy to work with! she brought energy and excitement to our event and made everyone feel comfortable and relaxed during their headshots. i'm not used to being in front of the camera so it was really helpful to have her guidance and relaxed demeanor to ease my nerves. would highly recommend booking the 'Good Times Captured' for a great experience!", name: 'Ashley', role: '// Good Times Captured · Oceanside, CA' },
+      { service: 'good times captured', quote: "Nicole was very pleasant and professional and made me feel very comfortable with the setting she created for my head shot. i would highly recommend her!", name: 'Chef Stacy', role: '// Good Times Captured · San Diego, CA' },
+      { service: 'good times captured', quote: "10/10 experience!", name: 'Mercedes', role: '// Good Times Captured' },
+      { service: 'good times captured', quote: "super professional and fun to shoot with! i would definitely book with her again!", name: 'Phillip', role: '// Good Times Captured · San Diego, CA' },
+    ],
+  },
+  {
+    label: 'WORKSHOPS & MENTORSHIP',
+    reviews: [
+      { service: 'ai-powered brand strategy · mentorship', quote: "a truly valuable mentoring experience with Nicole. she's especially strong at breaking down complex AI topics in UX and making them practical and actionable. after our session, i felt more confident and had a much more systematic approach to using AI in my work. highly recommend Nicole as a mentor who delivers real, usable skills — not just in theory.", name: 'Tati', role: '// Product Designer' },
+    ],
+  },
+];
+---
+<Base
+  title="Reviews — Dreamer Lab"
+  description="The words of dreamers Nicole has had the honor of working with — across brand strategy, design, visual storytelling, and mentorship."
+>
+  <section class="page-hero">
+    <SectionLabel text="WHAT THEY'RE SAYING" />
+    <h1 class="page-headline">
+      straight from<br />
+      <img src="/assets/writing/their-exp.svg" alt="their experiences." class="hw-img hw-their-exp" style="width:70%;max-width:600px;min-width:280px;margin-top:-20px;" />
+    </h1>
+    <p class="page-sub" style="font-weight:700;">these are the words of dreamers we've had the honor of working with.</p>
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="reviews-section">
+    {categories.map((cat, i) => (
+      <div class="reviews-category">
+        <SectionLabel text={cat.label} />
+        <Carousel>
+          {cat.reviews.map((r) => (
+            <div class="carousel-slide">
+              <span class="review-service">{r.service}</span>
+              <blockquote>{r.quote}</blockquote>
+              <cite>{r.name}</cite><span class="cite-role">{r.role}</span>
+            </div>
+          ))}
+        </Carousel>
+        {i < categories.length - 1 && <hr class="section-divider" style="margin-top:56px;" />}
+      </div>
+    ))}
+  </section>
+
+  <hr class="section-divider" />
+
+  <section class="section cta-close" style="padding-top:40px;">
+    <span class="review-cta-intro" style="font-family:var(--font-sans);font-weight:700;font-size:clamp(24px,5vw,44px);letter-spacing:-0.02em;display:block;line-height:1;">worked with us? we'd love it if you'd</span>
+    <h1 class="page-headline" style="margin-top:8px;">
+      <img src="/assets/writing/share-yours.svg" alt="share yours!" class="hw-img" style="width:70%;max-width:600px;min-width:280px;" />
+    </h1>
+    <p style="color:var(--grey);font-family:var(--font-mono);font-size:13px;margin-bottom:32px;">(it helps others decide if we're the right fit for them, too!)</p>
+    <Button href="https://tally.so/r/ja9jB4" target="_blank">→ leave a review</Button>
+  </section>
+</Base>

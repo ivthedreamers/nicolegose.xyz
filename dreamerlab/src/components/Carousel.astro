@@ -1,0 +1,41 @@
+---
+// Slides are passed via the default slot as .carousel-slide elements.
+interface Props { counter?: boolean; }
+const { counter = true } = Astro.props;
+---
+<div class="carousel">
+  <div class="carousel-track">
+    <slot />
+  </div>
+  <div class="carousel-controls">
+    {counter ? <span class="carousel-counter"></span> : <span></span>}
+    <div class="carousel-arrows">
+      <button class="carousel-btn prev" aria-label="previous">&larr;</button>
+      <button class="carousel-btn next" aria-label="next">&rarr;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.carousel').forEach((carousel) => {
+    const track = carousel.querySelector('.carousel-track') as HTMLElement | null;
+    const slides = carousel.querySelectorAll('.carousel-slide');
+    const prev = carousel.querySelector('.prev') as HTMLButtonElement | null;
+    const next = carousel.querySelector('.next') as HTMLButtonElement | null;
+    const counter = carousel.querySelector('.carousel-counter');
+    if (!track || !prev || !next || slides.length === 0) return;
+    let cur = 0;
+
+    function update() {
+      track.style.transform = `translateX(-${cur * 100}%)`;
+      if (counter) {
+        counter.innerHTML = `<span style="color:var(--cyan);font-weight:700;font-size:20px;">${cur + 1}</span><span style="font-size:10px;"> / ${slides.length}</span>`;
+      }
+      prev.disabled = cur === 0;
+      next.disabled = cur === slides.length - 1;
+    }
+    prev.addEventListener('click', () => { if (cur > 0) { cur--; update(); } });
+    next.addEventListener('click', () => { if (cur < slides.length - 1) { cur++; update(); } });
+    update();
+  });
+</script>

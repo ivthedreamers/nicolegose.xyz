@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+
+// TODO(launch): pick the funnel backend and set the real endpoint.
+//   Option A — Formspree: set FORM_ENDPOINT to your form URL (https://formspree.io/f/xxxx).
+//   Option B — Tally: replace the <form> below with your Tally embed (you already use Tally
+//              for the review form at tally.so/r/ja9jB4).
+//   Option C — Cal.com: swap the form for a scheduling embed for direct booking.
+//   Later: route submissions into the Notion Business Development Hub → Pipeline (or Airtable).
+const FORM_ENDPOINT = 'https://formspree.io/f/REPLACE_ME';
+const projectTypes = [
+  'do it for me (the whole package)',
+  'do it with me (collaborate)',
+  'teach me (mentorship / workshop)',
+  'not sure yet',
+];
+---
+<Base
+  title="Start a project — Dreamer Lab"
+  description="Tell Dreamer Lab about your project. Brand strategy, design systems, and visual storytelling for people building something worth remembering."
+>
+  <section class="page-hero">
+    <SectionLabel text="LET'S CO-CREATE" />
+    <h1 class="page-headline">start a<br />project.</h1>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="contact-grid">
+      <!-- INTRO / WHAT TO EXPECT -->
+      <div class="contact-intro">
+        <p class="contact-lead">tell us about your dream.</p>
+        <p>
+          share where you are and what you're building. we take on a limited number of
+          collaborations at a time so each one gets the studio's full attention.
+        </p>
+        <SectionLabel text="WHAT HAPPENS NEXT" />
+        <ol class="contact-steps">
+          <li>you send the note — the more context, the better.</li>
+          <li>we reply within 2–3 days to see if it's a fit.</li>
+          <li>we book a call, scope the project, and start co-creating.</li>
+        </ol>
+        <p class="form-note">
+          prefer email? reach out any time at
+          <a href="mailto:hello@thedreamerlab.co" style="color:var(--red);">hello@thedreamerlab.co</a>.
+        </p>
+      </div>
+
+      <!-- INQUIRY FORM -->
+      <form class="contact-form" action={FORM_ENDPOINT} method="POST">
+        <div class="form-field">
+          <label for="name">your name</label>
+          <input type="text" id="name" name="name" required autocomplete="name" />
+        </div>
+        <div class="form-field">
+          <label for="email">email</label>
+          <input type="email" id="email" name="email" required autocomplete="email" />
+        </div>
+        <div class="form-field">
+          <label for="brand">brand / project</label>
+          <input type="text" id="brand" name="brand" />
+        </div>
+        <div class="form-field">
+          <label for="type">what are you looking for?</label>
+          <select id="type" name="project_type">
+            {projectTypes.map((t) => <option value={t}>{t}</option>)}
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="message">tell us about it</label>
+          <textarea id="message" name="message" rows="5" required
+            placeholder="what are you building, and where are you now?"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="cursor:pointer;">→ send it</button>
+        <p class="form-note">we'll never share your details. one dreamer to another. ♡</p>
+      </form>
+    </div>
+  </section>
+</Base>

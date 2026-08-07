@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import Carousel from '../components/Carousel.astro';
+
+const featured = (await getCollection('work'))
+  .filter((w) => w.data.featured)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const homeReviews = [
+  {
+    service: 'brand strategy · design systems',
+    quote:
+      "working with Nicole was one of the most impactful design investments we've made. she brought both creative rigor and strategic thinking — the result was a scalable system our teams easily adopted. the value has far outlasted the project itself.",
+    name: 'Shereen',
+    role: '// SVP of Marketing · Sambazon',
+  },
+  {
+    service: 'brand identity',
+    quote:
+      "i am so pleased with the branding package Nicole and her team created for me. she is thoughtful, intentional, and truly knows how to make your ideas come to life — she works with you until it feels completely authentic to your brand.",
+    name: 'Sarah',
+    role: '// Founder · Linden',
+  },
+  {
+    service: 'web design · print',
+    quote:
+      "Nicole is a master web designer. had us up and running within hours, handled it masterfully, and is always available whenever i come calling. need i say more?",
+    name: 'Steve',
+    role: '// CEO · West Coast Creative Endeavors',
+  },
+];
+---
+<Base>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-label">// A CREATIVE STUDIO</p>
+      <h1 class="hero-headline">
+        <span class="hero-dreamers">we build brands<br />for the dreamers</span>
+        <img src="/assets/writing/the-work.svg" alt="who do the work." class="hw-img hw-the-work" />
+      </h1>
+      <p class="hero-sub">
+        Dreamer Lab is a creative studio. brand strategy, design systems, and visual
+        storytelling — so your brand works as hard as you do.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROOF STRIP -->
+  <div class="proof-strip">
+    <span class="my-services">brand strategy <span class="accent-plus">+</span> design systems <span class="accent-plus">+</span> visual storytelling</span>
+    <Button href="/contact">→ start a project</Button>
+  </div>
+
+  <hr class="cyan-rule" />
+
+  <!-- REFRAME / POSITIONING -->
+  <section class="section section-reframe">
+    <SectionLabel text="REFRAMING YOUR BRAND" />
+    <p class="reframe-statement">
+      you don't just offer a listing.<br />
+      <img src="/assets/writing/main-event.svg" alt="you are the main event." class="hw-img hw-main-event" />
+    </p>
+    <div class="reframe-body">
+      <p>you've curated a space people escape to, designed an experience people didn't know they needed, <span class="accent-plus">+</span> taken your craft to the next level.</p>
+      <p>the platform is just where they find you. your brand is why they come back. every touchpoint — when they first discover you, during their experience, and when they follow you online — becomes every reason they return, and every reason they tell someone else.</p>
+      <p><b>that's word-of-mouth.<br />that's the power of brand trust.</b></p>
+    </div>
+  </section>
+
+  <hr class="cyan-rule" />
+
+  <!-- SERVICES TEASER -->
+  <section class="section">
+    <SectionLabel text="HOW WE WORK TOGETHER" />
+    <div class="services-teaser">
+      <div class="teaser-card">
+        <p class="teaser-title">do it for me</p>
+        <p>you hold the vision; we bring the studio to refine and build it — the whole package, so you can focus on your craft.</p>
+      </div>
+      <div class="teaser-card">
+        <p class="teaser-title">do it with me</p>
+        <p>you know your story best. we co-create the brand and visuals that help you reach the people it's meant for.</p>
+      </div>
+      <div class="teaser-card">
+        <p class="teaser-title">teach me</p>
+        <p>you're a self-starter. we hand you the workflows, tools, and AI-powered systems to build it yourself — no gatekeeping.</p>
+      </div>
+    </div>
+    <Button href="/services" variant="secondary">→ explore services</Button>
+  </section>
+
+  <hr class="cyan-rule" />
+
+  <!-- FEATURED WORK -->
+  <section class="section">
+    <SectionLabel text="SELECTED WORK" />
+    <div class="featured-grid">
+      {featured.map((w) => (
+        <a href={`/work/${w.id}`} class="work-card">
+          <span class="work-eyebrow">{w.data.services[0]}</span>
+          <span class="work-name">{w.data.title}</span>
+          <span class="work-tags">{w.data.services.join(' · ')}</span>
+          <span class="work-blurb">{w.data.blurb}</span>
+          <span class="work-arrow">→ view work</span>
+        </a>
+      ))}
+    </div>
+    <Button href="/work" variant="secondary">→ see all work</Button>
+  </section>
+
+  <hr class="cyan-rule" />
+
+  <!-- REVIEWS STRIP -->
+  <section class="section reviews-section" style="padding-top:80px;">
+    <SectionLabel text="SHARED EXPERIENCES" />
+    <Carousel>
+      {homeReviews.map((r) => (
+        <div class="carousel-slide">
+          <span class="review-service">{r.service}</span>
+          <blockquote>{r.quote}</blockquote>
+          <cite>{r.name}</cite><span class="cite-role">{r.role}</span>
+        </div>
+      ))}
+    </Carousel>
+    <Button href="/reviews" variant="secondary">→ read more reviews</Button>
+  </section>
+
+  <hr class="cyan-rule" />
+
+  <!-- CLOSING CTA -->
+  <section class="section cta-close">
+    <h2 class="handwritten cta-title">let's co-create.</h2>
+    <p>through thoughtful collaboration and intentional design, we build brands that get remembered — and talked about — for years to come.</p>
+    <Button href="/contact">→ start a project</Button>
+  </section>
+</Base>

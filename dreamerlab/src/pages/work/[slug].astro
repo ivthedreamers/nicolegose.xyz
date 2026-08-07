@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Button from '../../components/Button.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+
+export async function getStaticPaths() {
+  const work = await getCollection('work');
+  return work.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const d = entry.data;
+---
+<Base
+  title={`${d.title} — Dreamer Lab`}
+  description={d.blurb}
+>
+  <section class="page-hero">
+    <SectionLabel text="CASE STUDY" />
+    <h1 class="page-headline">{d.title}</h1>
+    <p class="page-sub">{d.blurb}</p>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="case-meta">
+      {d.client && <div><span class="k">client</span><span class="v">{d.client}</span></div>}
+      {d.year && <div><span class="k">year</span><span class="v">{d.year}</span></div>}
+      {d.role && <div><span class="k">role</span><span class="v">{d.role}</span></div>}
+      <div><span class="k">services</span><span class="v">{d.services.join(' · ')}</span></div>
+    </div>
+
+    <div class="case-body">
+      <Content />
+    </div>
+
+    {d.quote && (
+      <blockquote class="case-quote">
+        &ldquo;{d.quote}&rdquo;
+        {d.quoteAuthor && <cite>— {d.quoteAuthor}</cite>}
+      </blockquote>
+    )}
+
+    <Button href="/work" variant="secondary">← all work</Button>
+  </section>
+
+  <hr class="cyan-rule" />
+
+  <section class="section cta-close">
+    <h2 class="handwritten cta-title">building something like this?</h2>
+    <p>tell us about your dream — we'll help you make it real.</p>
+    <Button href="/contact">→ start a project</Button>
+  </section>
+</Base>

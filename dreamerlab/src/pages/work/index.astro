@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Button from '../../components/Button.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+
+const work = (await getCollection('work')).sort(
+  (a, b) => a.data.order - b.data.order
+);
+---
+<Base
+  title="Work — Dreamer Lab"
+  description="Selected work from Dreamer Lab: brand strategy, design systems, custom brand experiences, and visual storytelling."
+>
+  <section class="page-hero">
+    <SectionLabel text="SELECTED WORK" />
+    <h1 class="page-headline">the greatest<br />impact.</h1>
+    <p class="page-sub">
+      every project starts with someone driven to build something tangible from their dream —
+      from corporate design systems to a bride who knew her day deserved more than a template.
+    </p>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="work-grid">
+      {work.map((w) => (
+        <a href={`/work/${w.id}`} class="work-card">
+          <span class="work-eyebrow">{w.data.year ?? w.data.services[0]}</span>
+          <span class="work-name">{w.data.title}</span>
+          <span class="work-tags">{w.data.services.join(' · ')}</span>
+          <span class="work-blurb">{w.data.blurb}</span>
+          <span class="work-arrow">→ view work</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <hr class="cyan-rule" />
+
+  <section class="section cta-close">
+    <h2 class="handwritten cta-title">your project, next.</h2>
+    <p>we take on a limited number of collaborations at a time so each one gets the studio's full attention.</p>
+    <Button href="/contact">→ start a project</Button>
+  </section>
+</Base>

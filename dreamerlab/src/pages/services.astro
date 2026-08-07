@@ -1,0 +1,88 @@
+---
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+
+const tiers = [
+  {
+    index: '01',
+    title: 'do it for me',
+    lede:
+      'you hold the vision — we bring the studio to refine and build it, so you don\'t have to. our most hands-on engagement, known as The Whole Package.',
+    forWho: 'for: founders & hosts who want it handled end-to-end.',
+    includes: [
+      'brand strategy & positioning',
+      'full visual identity + design system',
+      'visual storytelling (editorial photo/video)',
+      'website & key touchpoints',
+      'launch-ready assets across every channel',
+    ],
+  },
+  {
+    index: '02',
+    title: 'do it with me',
+    lede:
+      'you know your story better than anyone — we help you reach the audience to tell it to. we shoot together or co-create a brand identity that builds trust across every touchpoint.',
+    forWho: 'for: creators who want a collaborator, not a hand-off.',
+    includes: [
+      'collaborative brand & art direction',
+      'visual storytelling sessions',
+      'identity & touchpoint co-design',
+      'guidance you keep after we\'re done',
+    ],
+  },
+  {
+    index: '03',
+    title: 'teach me',
+    lede:
+      'you crave the DIY path and want the knowledge, skills, and tools to build it yourself. we share our professional workflows — from photography fundamentals to design strategy. no gatekeeping.',
+    forWho: 'for: passionate self-starters ready to build confidence.',
+    includes: [
+      '1:1 mentorship & workshops',
+      'AI-powered systems to create more in less time',
+      'photography & design fundamentals',
+      'the pro workflows we actually use',
+    ],
+  },
+];
+---
+<Base
+  title="Services — Dreamer Lab"
+  description="Three ways to work with Dreamer Lab: do it for me, do it with me, or teach me. Brand strategy, design systems, and visual storytelling."
+>
+  <section class="page-hero">
+    <SectionLabel text="CHOOSE YOUR LEVEL OF INVOLVEMENT" />
+    <h1 class="page-headline">work with the studio.</h1>
+    <p class="page-sub">
+      every engagement starts the same way — reframing how you see your brand — then goes as far
+      as you want to take it. pick the level that fits where you are.
+    </p>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="tiers">
+      {tiers.map((t) => (
+        <div class="tier">
+          <div class="tier-index">{t.index}</div>
+          <div class="tier-content">
+            <h2 class="tier-title">{t.title}</h2>
+            <p class="tier-lede">{t.lede}</p>
+            <p class="tier-for">{t.forWho}</p>
+            <ul class="tier-list">
+              {t.includes.map((i) => <li>{i}</li>)}
+            </ul>
+            <Button href="/contact" variant="secondary">→ start here</Button>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <hr class="cyan-rule" />
+
+  <section class="section cta-close">
+    <h2 class="handwritten cta-title">not sure which fits?</h2>
+    <p>tell us where you are and what you're building — we'll point you to the right starting line.</p>
+    <Button href="/contact">→ let's talk</Button>
+  </section>
+</Base>
