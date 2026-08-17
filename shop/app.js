@@ -168,6 +168,11 @@
       escapeHtml(row.title) + " <sup>(" + row.items.length + ")</sup>");
     titleWrap.appendChild(title);
     head.appendChild(titleWrap);
+    if (PAGE === "home" && state.filter === "All") {
+      var viewAll = el("a", "viewall", "View All →");
+      viewAll.href = "#room=" + encodeURIComponent(row.key);
+      head.appendChild(viewAll);
+    }
     section.appendChild(head);
 
     if (row.note) {
@@ -213,16 +218,36 @@
     var values = PAGE === "new-moms" ? ["All"].concat(ATG.NEEDS) : ["All"].concat(ATG.ROOMS);
     values.forEach(function (v) {
       var chip = el("button", "chip", v === "All" ? "All" : escapeHtml(v));
+      chip.dataset.value = v;
       chip.setAttribute("aria-pressed", v === state.filter ? "true" : "false");
       chip.addEventListener("click", function () {
-        state.filter = v;
-        Array.prototype.forEach.call(host.children, function (c) {
-          c.setAttribute("aria-pressed", c === chip ? "true" : "false");
-        });
-        render();
+        applyFilter(v);
+        if (PAGE === "home") {
+          if (v === "All") history.replaceState(null, "", location.pathname + location.search);
+          else location.hash = "room=" + encodeURIComponent(v);
+        }
       });
       host.appendChild(chip);
     });
+  }
+
+  /* sets state.filter, syncs chip pressed-state, and re-renders */
+  function applyFilter(v) {
+    state.filter = v;
+    var host = document.getElementById("filterChips");
+    if (host) {
+      Array.prototype.forEach.call(host.children, function (c) {
+        c.setAttribute("aria-pressed", c.dataset.value === v ? "true" : "false");
+      });
+    }
+    render();
+  }
+
+  /* home page: #room=<name> deep-links to a single filtered row */
+  function roomFromHash() {
+    var m = /room=([^&]*)/.exec(location.hash);
+    var room = m ? decodeURIComponent(m[1]) : "All";
+    return ATG.ROOMS.indexOf(room) !== -1 ? room : "All";
   }
 
   /* ---------- hero count ---------- */
@@ -252,9 +277,17 @@
 
   /* ---------- init ---------- */
   document.addEventListener("DOMContentLoaded", function () {
+    if (PAGE === "home") state.filter = roomFromHash();
     setHeroCount();
     buildChips();
     wireControls();
     render();
+  });
+
+  window.addEventListener("hashchange", function () {
+    if (PAGE !== "home") return;
+    applyFilter(roomFromHash());
+    var rows = document.getElementById("rows");
+    if (rows) rows.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 })();
