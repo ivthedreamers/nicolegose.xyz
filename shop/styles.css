@@ -255,7 +255,7 @@ body.view-list .strip {
 }
 .card__media {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
   background: linear-gradient(135deg, #EDE7DC 0%, #E3DBCC 100%);
   border: 1px solid var(--line);
   border-radius: var(--radius);
