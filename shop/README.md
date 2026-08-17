@@ -10,10 +10,10 @@ organized by room, plus a "For New Moms" edit sorted by baby's age & need.
 ## Files
 | file | what it is |
 |------|------------|
-| `index.html` | Home — rows by room, sticky filter/sort + grid/list toggle |
+| `index.html` | Home — rows by room, sticky filter/sort, per-room "View All" links |
 | `new-moms.html` | New Moms edit — rows by age stage, need filter chips |
 | `styles.css` | the design system + components |
-| `app.js` | renders cards from `products.js`, filtering/sorting/view/scroll |
+| `app.js` | renders cards from `products.js`, filtering/sorting/`#room=` deep links |
 | `products.js` | **the only file you edit day-to-day** — your product catalog |
 | `CNAME` | `allthingsgood.xyz` (for GitHub Pages) |
 
@@ -54,6 +54,13 @@ cd shop
 python3 -m http.server 8000
 # open http://localhost:8000
 ```
+
+**Cache-busting:** `index.html`/`new-moms.html` load `products.js`, `app.js`, and
+`styles.css` with a `?v=<short-git-sha>` query string. Browsers (especially mobile
+Safari) cache these aggressively even without any code change on your end — after
+pushing an update, bump the `v=` value in both HTML files (find/replace the old
+short SHA) so returning visitors actually get the new version instead of a stale
+cached copy.
 
 ## Deploy to allthingsgood.xyz
 This folder ships its own `CNAME`. Two options:
