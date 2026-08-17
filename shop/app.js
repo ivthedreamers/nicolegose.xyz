@@ -108,14 +108,11 @@
     return e;
   }
 
-  function buildCard(product, index, rowTitle) {
+  function buildCard(product, index) {
     var card = el("article", "card");
 
-    // labels (num for list view, room/stage for grid view)
-    var numLabel = el("span", "card__label card__label--num",
+    var numLabel = el("span", "card__label",
       pad(index + 1) + " / " + escapeHtml(product.title).toUpperCase());
-    var roomLabel = el("span", "card__label card__label--room",
-      escapeHtml(product.room || rowTitle || ""));
 
     // media
     var media = el("div", "card__media");
@@ -135,7 +132,6 @@
     // body
     var body = el("div", "card__body");
     body.appendChild(numLabel);
-    body.appendChild(roomLabel);
     body.appendChild(el("h3", "card__title", escapeHtml(product.title)));
     if (product.note) body.appendChild(el("p", "card__note", escapeHtml(product.note)));
 
@@ -149,12 +145,8 @@
     foot.appendChild(btn);
     body.appendChild(foot);
 
-    // grid view = label above media; list view = media then body (CSS handles order)
-    card.appendChild(roomLabel.cloneNode(true)); // top label in grid view
     card.appendChild(media);
     card.appendChild(body);
-    // remove the duplicate roomLabel we appended into body (kept numLabel there)
-    body.removeChild(roomLabel);
 
     return card;
   }
@@ -176,12 +168,6 @@
       escapeHtml(row.title) + " <sup>(" + row.items.length + ")</sup>");
     titleWrap.appendChild(title);
     head.appendChild(titleWrap);
-
-    var nav = el("div", "row__nav");
-    var left = el("button", "arrow", "←"); left.setAttribute("aria-label", "scroll left");
-    var right = el("button", "arrow", "→"); right.setAttribute("aria-label", "scroll right");
-    nav.appendChild(left); nav.appendChild(right);
-    head.appendChild(nav);
     section.appendChild(head);
 
     if (row.note) {
@@ -192,12 +178,8 @@
     }
 
     var strip = el("div", "strip");
-    row.items.forEach(function (p, i) { strip.appendChild(buildCard(p, i, row.title)); });
+    row.items.forEach(function (p, i) { strip.appendChild(buildCard(p, i)); });
     section.appendChild(strip);
-
-    // arrow scrolling
-    left.addEventListener("click", function () { strip.scrollBy({ left: -320, behavior: "smooth" }); });
-    right.addEventListener("click", function () { strip.scrollBy({ left: 320, behavior: "smooth" }); });
 
     return section;
   }
@@ -257,16 +239,6 @@
   function wireControls() {
     var sort = document.getElementById("sortSelect");
     if (sort) sort.addEventListener("change", function () { state.sort = sort.value; render(); });
-
-    var grid = document.getElementById("viewGrid");
-    var list = document.getElementById("viewList");
-    function setView(isList) {
-      document.body.classList.toggle("view-list", isList);
-      if (grid) grid.setAttribute("aria-pressed", isList ? "false" : "true");
-      if (list) list.setAttribute("aria-pressed", isList ? "true" : "false");
-    }
-    if (grid) grid.addEventListener("click", function () { setView(false); });
-    if (list) list.addEventListener("click", function () { setView(true); });
 
     // mobile menu
     var mNav = document.getElementById("mobileNav");

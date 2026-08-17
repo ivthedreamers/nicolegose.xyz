@@ -188,13 +188,6 @@ a { color: inherit; text-decoration: none; }
   padding: 8px 30px 8px 12px; cursor: pointer;
 }
 
-.seg { display: inline-flex; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-.seg button {
-  font-family: var(--sans); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-  background: var(--paper); border: none; padding: 8px 12px; cursor: pointer; color: var(--muted);
-}
-.seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
-
 /* ============================================================
    ROOM / STAGE ROW
    ============================================================ */
@@ -222,39 +215,25 @@ a { color: inherit; text-decoration: none; }
 }
 .row__note { font-size: 13px; color: var(--muted); max-width: 44ch; }
 
-/* horizontal strip (GRID view default) */
-.strip {
-  display: grid; grid-auto-flow: column;
-  grid-auto-columns: clamp(220px, 26vw, 300px);
-  gap: clamp(14px, 2vw, 26px);
-  overflow-x: auto; overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 12px;
-  scrollbar-width: thin;
-}
-.strip::-webkit-scrollbar { height: 6px; }
-.strip::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
-.strip > * { scroll-snap-align: start; }
-
-/* LIST view — sections become stacked index rows */
-body.view-list .strip {
-  grid-auto-flow: row;
-  grid-auto-columns: auto;
-  grid-template-columns: 1fr;
-  overflow: visible;
-  gap: 0;
-}
+/* stacked index rows */
+.strip { display: flex; flex-direction: column; }
 
 /* ============================================================
    PRODUCT CARD
    ============================================================ */
-.card { display: flex; flex-direction: column; }
+.card {
+  display: flex; flex-direction: row; align-items: center; gap: 24px;
+  padding: 22px 0; border-top: 1px solid var(--line-soft);
+}
+.strip .card:first-child { border-top: none; }
 .card__label {
   font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--muted); margin-bottom: 8px;
+  text-transform: uppercase; color: var(--muted); margin-bottom: 4px;
 }
 .card__media {
   position: relative;
+  flex: 0 0 clamp(160px, 20vw, 240px);
+  width: clamp(160px, 20vw, 240px);
   aspect-ratio: 1 / 1;
   background: linear-gradient(135deg, #EDE7DC 0%, #E3DBCC 100%);
   border: 1px solid var(--line);
@@ -272,30 +251,17 @@ body.view-list .strip {
   font-family: var(--sans); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase;
   background: var(--teal); color: #fff; padding: 4px 8px; border-radius: 4px;
 }
+.card__body { flex: 1 1 auto; }
 .card__title {
   font-family: var(--serif); font-weight: 500; letter-spacing: -0.01em;
-  font-size: 20px; line-height: 1.15; margin-top: 14px;
+  font-size: 24px; line-height: 1.15; margin-top: 2px;
 }
 .card__note { font-size: 13px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5; }
 .card__foot {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 12px; margin-top: 14px;
+  display: flex; flex-direction: column; align-items: flex-end;
+  gap: 12px; flex: 0 0 auto;
 }
 .card__price { font-family: var(--serif); font-size: 17px; letter-spacing: -0.01em; }
-
-/* LIST view card layout */
-body.view-list .card {
-  flex-direction: row; align-items: center; gap: 24px;
-  padding: 22px 0; border-top: 1px solid var(--line-soft);
-}
-body.view-list .strip .card:first-child { border-top: none; }
-body.view-list .card__media { flex: 0 0 120px; width: 120px; aspect-ratio: 1 / 1; }
-body.view-list .card__body { flex: 1 1 auto; }
-body.view-list .card__label { margin-bottom: 4px; }
-body.view-list .card__title { margin-top: 2px; font-size: 24px; }
-body.view-list .card__foot { flex: 0 0 auto; flex-direction: column; align-items: flex-end; margin-top: 0; }
-body:not(.view-list) .card__label--num { display: none; }
-body.view-list .card__label--room { display: none; }
 
 /* ============================================================
    BUTTONS — rounded rectangle
@@ -316,16 +282,6 @@ body.view-list .card__label--room { display: none; }
 
 .viewall { font-size: 12px; letter-spacing: 0.06em; color: var(--teal); white-space: nowrap; }
 .viewall:hover { color: var(--teal-deep); text-decoration: underline; text-underline-offset: 3px; }
-
-/* strip nav arrows */
-.row__nav { display: flex; gap: 8px; }
-.arrow {
-  width: 34px; height: 34px; border: 1px solid var(--line); border-radius: 999px;
-  background: var(--paper); cursor: pointer; color: var(--ink); font-size: 15px;
-  display: grid; place-items: center; transition: all .18s ease;
-}
-.arrow:hover { border-color: var(--ink); }
-body.view-list .row__nav { display: none; }
 
 /* ============================================================
    NEW MOMS FEATURE CALLOUT
@@ -376,9 +332,9 @@ body.view-list .row__nav { display: none; }
   .feature__aside { text-align: left; }
   .row__head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .toolbar__right { margin-left: 0; width: 100%; justify-content: space-between; }
-  body.view-list .card { flex-direction: column; align-items: stretch; }
-  body.view-list .card__media { width: 100%; flex-basis: auto; aspect-ratio: 4/5; }
-  body.view-list .card__foot { align-items: flex-start; margin-top: 14px; }
+  .card { flex-direction: column; align-items: stretch; }
+  .card__media { width: 100%; flex-basis: auto; aspect-ratio: 1 / 1; }
+  .card__foot { align-items: flex-start; margin-top: 14px; }
 }
 
 /* mobile slide-out menu */
