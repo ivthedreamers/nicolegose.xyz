@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Creative Partnership — Dreamer Lab &amp; MiraMar Acupuncture</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #FAFAFA; color: #000; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.75; letter-spacing: -0.03em; }
+    .page { max-width: 860px; margin: 0 auto; padding: 60px; }
+    .top-wordmark { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: -0.02em; color: #000; display: block; margin-bottom: 32px; }
+    .label { font-family: 'SF Mono', 'Courier New', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #DB0606; margin-bottom: 16px; display: block; }
+    .label-black { font-family: 'SF Mono', 'Courier New', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #000; margin-bottom: 16px; display: block; }
+    .header-label { font-family: 'SF Mono', 'Courier New', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #DB0606; margin-bottom: 16px; display: block; }
+    h1 { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px; }
+    .header-byline { font-family: 'SF Mono', monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #888; }
+    hr { border: none; border-top: 1px solid #E3E3E3; margin: 40px 0; }
+    .section { margin-bottom: 48px; }
+    .section p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.75; letter-spacing: -0.03em; color: #000; }
+    .placeholder { color: #DB0606; font-style: italic; }
+
+    /* COURSES / OVERVIEW CARDS */
+    .course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+    .course-card { background: #fff; border: 1px solid #E0E0E0; padding: 24px 28px; }
+    .course-number { font-family: 'SF Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #888; margin-bottom: 6px; display: block; }
+    .course-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -0.02em; color: #000; margin-bottom: 10px; display: block; }
+    .course-card p { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; letter-spacing: -0.03em; color: #555; }
+
+    /* EXPAND BLOCKS */
+    .expand-block { background: rgba(227,227,227,0.3); padding: 20px 24px; border-left: 4px solid #DB0606; margin-bottom: 12px; cursor: pointer; transition: background 0.2s ease; }
+    .expand-block:hover { background: #eee; }
+    .expand-block-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .expand-block-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -0.02em; color: #000; display: block; }
+    .expand-block-footer { display: flex; justify-content: flex-end; margin-top: 10px; }
+    .expand-toggle { font-family: 'SF Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #DB0606; }
+    .expand-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
+    .expand-body.open { max-height: 1400px; overflow: visible; }
+    .expand-body-inner { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; letter-spacing: -0.03em; color: #444; padding-top: 12px; border-top: 1px solid #CCC; margin-top: 12px; }
+    .expand-body-inner ul { margin: 8px 0 8px 20px; }
+    .expand-body-inner li { margin-bottom: 6px; }
+
+    /* FLIP CARDS */
+    .closing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; align-items: start; }
+    .flip-card { width: 100%; height: 180px; position: relative; perspective: 1000px; cursor: pointer; }
+    .closing-grid .flip-card { height: 170px; }
+    .flip-card-inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.5s ease; position: relative; }
+    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+    .flip-card-front, .flip-card-back { position: absolute; inset: 0; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+    .flip-card-front.white { background: #fff; border: 1px solid #E0E0E0; }
+    .flip-card-back.light { background: #F5F5F5; border-left: 4px solid #DB0606; transform: rotateY(180deg); }
+    .card-front-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.03em; color: #000; margin-bottom: 6px; display: block; }
+    .card-front-cta { font-family: 'SF Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #DB0606; text-align: right; }
+    .card-back-context { font-family: 'Inter', sans-serif; font-size: 13px; color: #000; letter-spacing: -0.03em; line-height: 1.6; }
+    .card-back-cta { font-family: 'SF Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #DB0606; text-align: right; }
+
+    /* CTA */
+    .cta-block { max-width: 860px; margin: 60px auto; padding: 0 24px; text-align: center; }
+    .cta-sub { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px; color: #000; margin: 8px 0 32px; }
+    .cta-buttons { display: flex; flex-direction: row; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .cta-btn { font-family: 'SF Mono', monospace; font-size: 14px; font-weight: 600; letter-spacing: 0.02em; padding: 14px 24px; border: 1.5px solid #000; text-decoration: none; color: #000; transition: all 0.2s ease; }
+    .cta-maybe:hover { background: #DB0606; border-color: #DB0606; color: #FAFAFA; }
+    .cta-yes:hover { background: #000; color: #FAFAFA; }
+    .cta-no:hover { opacity: 0.4; }
+
+    /* FOOTER */
+    .footer-rule { border: none; border-top: 1px solid #E3E3E3; margin: 60px 0 40px; }
+    .footer-quote { text-align: center; max-width: 520px; margin: 0 auto 40px; }
+    .footer-quote-mark { font-size: 48px; color: #000; line-height: 0; display: block; margin-bottom: 8px; margin-top: 32px; }
+    .footer-quote p { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.8; color: #000000; }
+    .footer-signoff { text-align: center; margin: 0 auto; }
+    .footer-from { font-family: 'SF Mono', monospace; font-size: 12px; letter-spacing: 0.04em; color: #DB0606; margin-bottom: 8px; }
+    .footer-heart { font-size: 16px; color: #DB0606; margin-bottom: 8px; }
+    .footer-name { font-family: 'SF Mono', monospace; font-size: 12px; color: #DB0606; margin-top: 8px; margin-bottom: 4px; letter-spacing: 0.04em; }
+    .footer-sub { font-family: 'SF Mono', monospace; font-size: 11px; color: #888888; letter-spacing: 0.06em; }
+
+    @media (max-width: 768px) {
+      .page { padding: 24px; }
+      h1 { font-size: 26px; }
+      .course-grid, .closing-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <span class="top-wordmark">The Dreamer Lab.</span>
+  <div class="header-label">A CREATIVE BARTER PARTNERSHIP</div>
+  <h1>Building the MiraMar Acupuncture Brand</h1>
+  <div class="header-byline">proposed by Nicole Gosé<br>// Founder, Dreamer Lab</div>
+
+  <hr />
+
+  <div class="section">
+    <span class="label">// THE IDEA</span>
+    <p>MiraMar Acupuncture is already doing the real work &mdash; treating people, earning trust, building a practice one patient at a time. What it doesn't have yet is a brand and a set of systems that carry that same care into every touchpoint: the photos, the website, the follow-up email, the booking confirmation. That's where Dreamer Lab comes in.</p>
+    <br>
+    <p>This is a barter proposal: creative brand services from Dreamer Lab, in exchange for treatments. No cash changing hands &mdash; just two small businesses trading what they're each good at. <span class="placeholder">[scope, treatment count, and exchange terms to be finalized together on a call]</span>.</p>
+  </div>
+
+  <div class="section">
+    <span class="label">// WHAT'S ON THE TABLE</span>
+    <div class="course-grid">
+      <div class="course-card">
+        <span class="course-number">Track 1</span>
+        <span class="course-title">Photography</span>
+        <p>Studio, practitioner, and treatment-space photography that makes Shanti's care visible online.</p>
+      </div>
+      <div class="course-card">
+        <span class="course-number">Track 2</span>
+        <span class="course-title">Website Redesign</span>
+        <p>A calming, booking-friendly site that actually reflects the practice.</p>
+      </div>
+      <div class="course-card">
+        <span class="course-number">Track 3</span>
+        <span class="course-title">Brand Strategy</span>
+        <p>A plan for Shanti to step back from admin without stepping back from her business.</p>
+      </div>
+      <div class="course-card">
+        <span class="course-number">Track 4</span>
+        <span class="course-title">AI-Powered Admin Automation</span>
+        <p>Real systems that quietly handle the busywork in the background.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 8px;">
+
+    <div class="expand-block" onclick="toggleBlock(this)">
+      <div class="expand-block-top">
+        <span class="expand-block-title">Photography</span>
+      </div>
+      <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          A full session capturing the practice as it actually feels to walk into &mdash; the treatment space, the details, the calm. This includes:
+          <ul>
+            <li>Practitioner portraits of Dr. Shanti and Dr. Trisha &mdash; plus the incoming bodywork specialist if the holistic repositioning moves forward &mdash; the faces patients see before they ever book</li>
+            <li>Treatment room &amp; studio photography &mdash; the space itself, styled and lit to read as professional and welcoming</li>
+            <li>Product/herb photography for <span class="placeholder">[Shanti's specific products, herbal formulas, or retail items]</span>, if relevant to the practice</li>
+            <li>Lifestyle content built for marketing &mdash; images that work across the website, Instagram, and print, not just a one-time gallery</li>
+          </ul>
+          The goal isn't a photoshoot for its own sake &mdash; it's a working image library Shanti can pull from for a year of marketing without ever picking up a camera again.
+        </div>
+      </div>
+    </div>
+
+    <div class="expand-block" onclick="toggleBlock(this)">
+      <div class="expand-block-top">
+        <span class="expand-block-title">Website Redesign</span>
+      </div>
+      <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          A rebuilt site designed around how people actually decide to book a wellness appointment &mdash; trust, clarity, and ease. This includes:
+          <ul>
+            <li>Mobile-first design, since most new patients will find Shanti from their phone</li>
+            <li>Clear service pages for Acupuncture and Cosmetic Acupuncture, with a Massage/Bodywork page ready to go live &mdash; her current site already lists "Massage Services &mdash; Coming Soon," so this closes a loop she already opened</li>
+            <li>A calming, trustworthy visual direction that matches the in-person experience of the practice &mdash; the current Wix template undersells it</li>
+            <li>An About / practitioner bio section that builds credibility before the first visit</li>
+            <li>Testimonials built into the structure, not buried on a separate page</li>
+            <li>A real booking flow &mdash; the current site only has a contact form, no online scheduling, which is real friction for new patients</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="expand-block" onclick="toggleBlock(this)">
+      <div class="expand-block-top">
+        <span class="expand-block-title">Brand Strategy — Becoming Hands-Off</span>
+      </div>
+      <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          Most solo wellness practitioners hit the same wall: the better the practice does, the more time gets eaten by scheduling, intake forms, follow-ups, and marketing &mdash; time that should be going to patients. This track is about designing a brand and a set of operating habits that let Shanti do less admin without doing less business:
+          <ul>
+            <li>A clear, repeatable brand voice and visual system so marketing decisions stop requiring her to start from scratch every time</li>
+            <li>A content strategy she (or someone else) can actually maintain &mdash; built from the photography library, not dependent on her generating new ideas weekly</li>
+            <li>An honest look at which admin tasks are actually hers to do, and which can be delegated, templated, or automated (see the next track)</li>
+            <li>A simple roadmap for growth that doesn't assume she wants to work more hours to earn more &mdash; the opposite, ideally</li>
+            <li><b>A full repositioning from single-modality acupuncture clinic to holistic wellness destination</b> &mdash; anchored by acupuncture, expanded with in-house bodywork (myofascial release, neuromuscular/deep tissue, sports &amp; stretch facilitation, cupping, gua sha, trigger point therapy). See "The Holistic Wellness Vision" below for the full case.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="expand-block" onclick="toggleBlock(this)">
+      <div class="expand-block-top">
+        <span class="expand-block-title">AI-Powered Admin Automation</span>
+      </div>
+      <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          Practical, right-sized automation for a solo practice &mdash; nothing enterprise-grade, nothing she'll need an IT person to maintain:
+          <ul>
+            <li>Automated appointment reminders and confirmations, so fewer no-shows without more manual texting</li>
+            <li>AI-assisted intake form processing &mdash; new patient forms summarized and organized before she even opens them</li>
+            <li>A simple FAQ / booking chatbot for the website that answers the questions that currently interrupt her day</li>
+            <li>Automated follow-up and rebooking sequences after a visit, so retention doesn't depend on her remembering to reach out</li>
+            <li>Social content repurposing &mdash; turning the photo/video library into a steady drip of posts without her sitting down to "do content"</li>
+            <li>AI-drafted email/newsletter workflows she can review and send in minutes, not write from scratch</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="expand-block" onclick="toggleBlock(this)">
+      <div class="expand-block-top">
+        <span class="expand-block-title">The Holistic Wellness Vision</span>
+      </div>
+      <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
+      <div class="expand-body">
+        <div class="expand-body-inner">
+          Right now, MiraMar treats one layer of the body &mdash; the energetic and systemic layer, through acupuncture. There's a real opportunity to become the full picture: the anchor destination for whole-person care in the neighborhood, not one clinic among many competing on a single service.
+          <br><br>
+          <b>The move:</b> bring on an in-house bodywork specialist &mdash; trained in myofascial release, neuromuscular/deep tissue work, sports &amp; stretch facilitation, cupping, gua sha, and trigger point therapy &mdash; as a co-anchor practitioner, not a chair-rental add-on. His practice, <b>Wellness Woods</b> ("Your Resource for Better Health &amp; Wellness"), already shares MiraMar's whole-person philosophy: hands-on care that extends into education, self-release techniques, and recovery tools between sessions. His training bridges Eastern and Western modalities &mdash; cupping and gua sha alongside clinical sports bodywork &mdash; and includes clinical training through the Pacific College of Oriental Medicine, so he speaks the language of an acupuncture clinic natively, not as an outsider.
+          <br><br>
+          Worth noting: MiraMar's own site already lists <i>"Massage Services &mdash; Coming Soon"</i> &mdash; this isn't a new direction, it's completing one Shanti already started.
+          <br><br>
+          <b>Why it works for both sides:</b>
+          <ul>
+            <li>Shanti gets a clinically-proven practitioner (built a practice at Massage Heights booked 3&ndash;4 months out) with zero hiring risk, instant service-line expansion, and same-roof cross-referral &mdash; a patient getting needles today books bodywork next week instead of going elsewhere</li>
+            <li>Cupping and gua sha dovetail directly with her existing cosmetic acupuncture line &mdash; a real upsell, not a stretch</li>
+            <li>He gets an established, walk-in-ready patient base instead of building demand from zero, plus integrative-clinic credibility that standalone spa-massage positioning doesn't offer</li>
+            <li>A genuine niche differentiator: he trains Brazilian jiu-jitsu himself, giving him real credibility with athletes and grapplers dealing with grip fatigue, torqued shoulders, and hip/neck loading &mdash; an underserved audience most boutique acupuncture clinics aren't fighting over</li>
+          </ul>
+          <b>This is also the mechanism for the "Nordstrom" positioning</b> Shanti has talked about &mdash; not a metaphor, an actual model: the anchor isn't one great treatment, it's becoming the one destination where people don't have to shop around. Needles, bodywork, cupping, recovery, all under one roof, all one trusted name.
+          <br><br>
+          <span class="placeholder">Open for more: this section can keep growing — print collateral, signage, a referral/loyalty system between the two practices, joint workshops or events, recovery-focused content series. Add more here as it develops.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr />
+
+  <div class="section">
+    <span class="label-black">// TOKENS OF THE PARTNERSHIP</span>
+    <div class="closing-grid" style="margin-top:24px;">
+
+      <div class="flip-card" onclick="flipCard(this)">
+        <div class="flip-card-inner">
+          <div class="flip-card-front white">
+            <div><span class="card-front-title">Full Ownership, No Royalties</span></div>
+            <div class="card-front-cta">TAP TO READ &rarr;</div>
+          </div>
+          <div class="flip-card-back light">
+            <div class="card-back-context">Every photo, page, and asset is yours to use across any platform, forever. No licensing fees, no restrictions &mdash; just a credit to Dreamer Lab where it fits.</div>
+            <div class="card-back-cta">&larr; BACK</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="flipCard(this)">
+        <div class="flip-card-inner">
+          <div class="flip-card-front white">
+            <div><span class="card-front-title">Your Practice Schedule First</span></div>
+            <div class="card-front-cta">TAP TO READ &rarr;</div>
+          </div>
+          <div class="flip-card-back light">
+            <div class="card-back-context">Every shoot, session, and check-in is scheduled around patient care &mdash; never the other way around. Your ability to treat people comes first, always.</div>
+            <div class="card-back-cta">&larr; BACK</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flip-card" onclick="flipCard(this)">
+        <div class="flip-card-inner">
+          <div class="flip-card-front white">
+            <div><span class="card-front-title">A True Trade, Not a Favor</span></div>
+            <div class="card-front-cta">TAP TO READ &rarr;</div>
+          </div>
+          <div class="flip-card-back light">
+            <div class="card-back-context">This is a partnership between two small businesses, each bringing real value. We'll set fair, mutually-agreed terms together &mdash; not guess at them here.</div>
+            <div class="card-back-cta">&larr; BACK</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-block">
+    <p class="cta-sub">Ready to build this together?</p>
+    <div class="cta-buttons">
+      <a href="mailto:nicolegosedesigns@gmail.com?subject=I'm in — Dreamer Lab x MiraMar Acupuncture&body=Hi Nicole, I'm in! Let's talk terms." class="cta-btn cta-yes">I'm in!</a>
+      <a href="mailto:nicolegosedesigns@gmail.com?subject=Questions — Dreamer Lab x MiraMar Acupuncture&body=Hi Nicole, I'm interested but have a few questions first." class="cta-btn cta-maybe">Let's talk more</a>
+      <a href="mailto:nicolegosedesigns@gmail.com?subject=Not right now — Dreamer Lab x MiraMar Acupuncture&body=Hi Nicole, I appreciate the offer but I'll pass for now." class="cta-btn cta-no">Not right now</a>
+    </div>
+  </div>
+
+  <hr class="footer-rule" />
+  <br>
+  <div class="footer-quote">
+    <span class="footer-quote-mark">&ldquo;</span>
+    <p>the best partnerships are the ones where both people leave with more than they came with &mdash; more visibility, more time, more room to do the work that matters. That's what this is.</p>
+  </div>
+  <div class="footer-signoff">
+    <p class="footer-from">from one small business to another,</p>
+    <p class="footer-heart">&#9825;</p>
+    <p class="footer-name">nicole gos&eacute;</p>
+    <p class="footer-sub">// Founder, Dreamer Lab</p>
+  </div>
+
+</div>
+
+<script>
+  function toggleBlock(el) {
+    const body = el.querySelector('.expand-body');
+    const toggle = el.querySelector('.expand-toggle');
+    if (!body || !toggle) return;
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    toggle.textContent = isOpen ? 'EXPAND +' : '— CLOSE';
+  }
+
+  function flipCard(el) {
+    el.classList.toggle('flipped');
+  }
+</script>
+
+</body>
+</html>
