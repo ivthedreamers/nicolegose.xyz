@@ -22,39 +22,25 @@
     .section p { font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.75; letter-spacing: -0.03em; color: #000; }
     .placeholder { color: #DB0606; font-style: italic; }
 
-    /* COURSES / OVERVIEW CARDS */
-    .course-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
-    .course-card { background: #fff; border: 1px solid #E0E0E0; padding: 24px 28px; }
+    /* TRACK CARDS (merged overview + expandable detail) */
+    .track-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 8px; }
+    .track-card { background: #fff; border: 1px solid #E0E0E0; padding: 24px 28px; cursor: pointer; transition: background 0.2s ease; }
+    .track-card:hover { background: #fafafa; }
+    .track-card.expanded { grid-column: 1 / -1; background: #fff; }
     .course-number { font-family: 'SF Mono', monospace; font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #888; margin-bottom: 6px; display: block; }
     .course-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -0.02em; color: #000; margin-bottom: 10px; display: block; }
-    .course-card p { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; letter-spacing: -0.03em; color: #555; }
-
-    /* EXPAND BLOCKS */
-    .expand-block { background: rgba(227,227,227,0.3); padding: 20px 24px; border-left: 4px solid #DB0606; margin-bottom: 12px; cursor: pointer; transition: background 0.2s ease; }
-    .expand-block:hover { background: #eee; }
-    .expand-block-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
-    .expand-block-title { font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; letter-spacing: -0.02em; color: #000; display: block; }
-    .expand-block-footer { display: flex; justify-content: flex-end; margin-top: 10px; }
+    .track-card > p { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; letter-spacing: -0.03em; color: #555; margin-bottom: 12px; }
+    .expand-block-footer { display: flex; justify-content: flex-end; margin-top: 4px; }
     .expand-toggle { font-family: 'SF Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #DB0606; }
     .expand-body { max-height: 0; overflow: hidden; transition: max-height 0.5s ease; }
     .expand-body.open { max-height: 1400px; overflow: visible; }
-    .expand-body-inner { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; letter-spacing: -0.03em; color: #444; padding-top: 12px; border-top: 1px solid #CCC; margin-top: 12px; }
+    .expand-body-inner { font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.65; letter-spacing: -0.03em; color: #444; padding-top: 12px; border-top: 1px solid #CCC; margin-top: 8px; }
     .expand-body-inner ul { margin: 8px 0 8px 20px; }
     .expand-body-inner li { margin-bottom: 6px; }
 
-    /* FLIP CARDS */
-    .closing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; align-items: start; }
-    .flip-card { width: 100%; height: 180px; position: relative; perspective: 1000px; cursor: pointer; }
-    .closing-grid .flip-card { height: 170px; }
-    .flip-card-inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.5s ease; position: relative; }
-    .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
-    .flip-card-front, .flip-card-back { position: absolute; inset: 0; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-    .flip-card-front.white { background: #fff; border: 1px solid #E0E0E0; }
-    .flip-card-back.light { background: #F5F5F5; border-left: 4px solid #DB0606; transform: rotateY(180deg); }
-    .card-front-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px; letter-spacing: -0.03em; color: #000; margin-bottom: 6px; display: block; }
-    .card-front-cta { font-family: 'SF Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #DB0606; text-align: right; }
-    .card-back-context { font-family: 'Inter', sans-serif; font-size: 13px; color: #000; letter-spacing: -0.03em; line-height: 1.6; }
-    .card-back-cta { font-family: 'SF Mono', monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em; color: #DB0606; text-align: right; }
+    @media (max-width: 768px) {
+      .track-card.expanded { grid-column: 1; }
+    }
 
     /* CTA */
     .cta-block { max-width: 860px; margin: 60px auto; padding: 0 24px; text-align: center; }
@@ -79,7 +65,7 @@
     @media (max-width: 768px) {
       .page { padding: 24px; }
       h1 { font-size: 26px; }
-      .course-grid, .closing-grid { grid-template-columns: 1fr; }
+      .track-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -102,36 +88,12 @@
 
   <div class="section">
     <span class="label">// WHAT'S ON THE TABLE</span>
-    <div class="course-grid">
-      <div class="course-card">
-        <span class="course-number">Track 1</span>
-        <span class="course-title">Photography</span>
-        <p>Studio, practitioner, and treatment-space photography that makes Shanti's care visible online.</p>
-      </div>
-      <div class="course-card">
-        <span class="course-number">Track 2</span>
-        <span class="course-title">Website Redesign</span>
-        <p>A calming, booking-friendly site that actually reflects the practice.</p>
-      </div>
-      <div class="course-card">
-        <span class="course-number">Track 3</span>
-        <span class="course-title">Brand Strategy</span>
-        <p>A plan for Shanti to step back from admin without stepping back from her business.</p>
-      </div>
-      <div class="course-card">
-        <span class="course-number">Track 4</span>
-        <span class="course-title">AI-Powered Admin Automation</span>
-        <p>Real systems that quietly handle the busywork in the background.</p>
-      </div>
-    </div>
-  </div>
+    <div class="track-grid">
 
-  <div style="margin-top: 8px;">
-
-    <div class="expand-block" onclick="toggleBlock(this)">
-      <div class="expand-block-top">
-        <span class="expand-block-title">Photography</span>
-      </div>
+    <div class="track-card" onclick="toggleBlock(this)">
+      <span class="course-number">Track 1</span>
+      <span class="course-title">Photography</span>
+      <p>Studio, practitioner, and treatment-space photography that makes MiraMar's care visible online.</p>
       <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
       <div class="expand-body">
         <div class="expand-body-inner">
@@ -147,10 +109,10 @@
       </div>
     </div>
 
-    <div class="expand-block" onclick="toggleBlock(this)">
-      <div class="expand-block-top">
-        <span class="expand-block-title">Website Redesign</span>
-      </div>
+    <div class="track-card" onclick="toggleBlock(this)">
+      <span class="course-number">Track 2</span>
+      <span class="course-title">Website Redesign</span>
+      <p>A calming, booking-friendly site that actually reflects the practice.</p>
       <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
       <div class="expand-body">
         <div class="expand-body-inner">
@@ -167,10 +129,10 @@
       </div>
     </div>
 
-    <div class="expand-block" onclick="toggleBlock(this)">
-      <div class="expand-block-top">
-        <span class="expand-block-title">Brand Strategy — Becoming Hands-Off</span>
-      </div>
+    <div class="track-card" onclick="toggleBlock(this)">
+      <span class="course-number">Track 3</span>
+      <span class="course-title">Brand Strategy — Becoming Hands-Off</span>
+      <p>A plan for Shanti to step back from admin without stepping back from her business.</p>
       <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
       <div class="expand-body">
         <div class="expand-body-inner">
@@ -186,10 +148,10 @@
       </div>
     </div>
 
-    <div class="expand-block" onclick="toggleBlock(this)">
-      <div class="expand-block-top">
-        <span class="expand-block-title">AI-Powered Admin Automation</span>
-      </div>
+    <div class="track-card" onclick="toggleBlock(this)">
+      <span class="course-number">Track 4</span>
+      <span class="course-title">AI-Powered Admin Automation</span>
+      <p>Real systems that quietly handle the busywork in the background.</p>
       <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
       <div class="expand-body">
         <div class="expand-body-inner">
@@ -206,10 +168,10 @@
       </div>
     </div>
 
-    <div class="expand-block" onclick="toggleBlock(this)">
-      <div class="expand-block-top">
-        <span class="expand-block-title">The Holistic Wellness Vision</span>
-      </div>
+    <div class="track-card" onclick="toggleBlock(this)">
+      <span class="course-number">Track 5</span>
+      <span class="course-title">The Holistic Wellness Vision</span>
+      <p>Evolving from single-modality acupuncture clinic to full holistic wellness destination &mdash; with an in-house bodywork specialist as co-anchor.</p>
       <div class="expand-block-footer"><span class="expand-toggle">EXPAND +</span></div>
       <div class="expand-body">
         <div class="expand-body-inner">
@@ -233,55 +195,10 @@
       </div>
     </div>
 
+    </div>
   </div>
 
   <hr />
-
-  <div class="section">
-    <span class="label-black">// TOKENS OF THE PARTNERSHIP</span>
-    <div class="closing-grid" style="margin-top:24px;">
-
-      <div class="flip-card" onclick="flipCard(this)">
-        <div class="flip-card-inner">
-          <div class="flip-card-front white">
-            <div><span class="card-front-title">Full Ownership, No Royalties</span></div>
-            <div class="card-front-cta">TAP TO READ &rarr;</div>
-          </div>
-          <div class="flip-card-back light">
-            <div class="card-back-context">Every photo, page, and asset is yours to use across any platform, forever. No licensing fees, no restrictions &mdash; just a credit to Dreamer Lab where it fits.</div>
-            <div class="card-back-cta">&larr; BACK</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card" onclick="flipCard(this)">
-        <div class="flip-card-inner">
-          <div class="flip-card-front white">
-            <div><span class="card-front-title">Your Practice Schedule First</span></div>
-            <div class="card-front-cta">TAP TO READ &rarr;</div>
-          </div>
-          <div class="flip-card-back light">
-            <div class="card-back-context">Every shoot, session, and check-in is scheduled around patient care &mdash; never the other way around. Your ability to treat people comes first, always.</div>
-            <div class="card-back-cta">&larr; BACK</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flip-card" onclick="flipCard(this)">
-        <div class="flip-card-inner">
-          <div class="flip-card-front white">
-            <div><span class="card-front-title">A True Trade, Not a Favor</span></div>
-            <div class="card-front-cta">TAP TO READ &rarr;</div>
-          </div>
-          <div class="flip-card-back light">
-            <div class="card-back-context">This is a partnership between two small businesses, each bringing real value. We'll set fair, mutually-agreed terms together &mdash; not guess at them here.</div>
-            <div class="card-back-cta">&larr; BACK</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
 
   <!-- CTA -->
   <div class="cta-block">
@@ -315,11 +232,8 @@
     if (!body || !toggle) return;
     const isOpen = body.classList.contains('open');
     body.classList.toggle('open', !isOpen);
+    el.classList.toggle('expanded', !isOpen);
     toggle.textContent = isOpen ? 'EXPAND +' : '— CLOSE';
-  }
-
-  function flipCard(el) {
-    el.classList.toggle('flipped');
   }
 </script>
 
