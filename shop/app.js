@@ -67,7 +67,13 @@
   /* rows definition depends on the page */
   function rowDefs() {
     if (PAGE === "new-moms") {
-      return ATG.AGE_STAGES.map(function (stage) {
+      var freq = {
+        key: "__freq",
+        title: "Frequently Purchased",
+        note: "the pieces new moms reach for again and again.",
+        items: ATG.PRODUCTS.filter(function (p) { return p.frequentlyPurchased && p.newMomPick; }),
+      };
+      var stages = ATG.AGE_STAGES.map(function (stage) {
         return {
           key: stage,
           title: stage,
@@ -75,6 +81,7 @@
           items: ATG.PRODUCTS.filter(function (p) { return p.newMomPick && p.ageStage === stage; }),
         };
       });
+      return [freq].concat(stages);
     }
     return ATG.ROOMS.map(function (room) {
       return {

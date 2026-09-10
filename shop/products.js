@@ -36,7 +36,7 @@ const AGE_STAGES = [
   "Toddler (1–3 yr)",
 ];
 
-const NEEDS = ["feeding", "sleep", "bath", "on-the-go", "mom-care"];
+const NEEDS = ["feeding", "sleep", "bath", "on-the-go", "mom-care", "health & soothing"];
 
 const PRODUCTS = [
   /* ---------- BEDROOM & BATH ---------- */
@@ -81,6 +81,30 @@ const PRODUCTS = [
 
   /* ---------- NURSERY & BABY (many are newMomPicks) ---------- */
   {
+    title: "HelloBaby Video Monitor",
+    url: "https://amzn.to/4xitgFz",
+    image: "",
+    note: "doesn't need wifi to connect, so no worry about the camera being hacked.",
+    room: "Nursery & Baby",
+    ageStage: "Newborn (0–3 mo)",
+    needs: ["sleep"],
+    newMomPick: true,
+    frequentlyPurchased: true,
+    addedAt: "2026-08-26",
+  },
+  {
+    title: "Pigeon Anti-Colic Bottles",
+    url: "https://amzn.to/4giWNcm",
+    image: "",
+    note: "recommended by our OT & lactation consultant to help baby's oral development.",
+    room: "Nursery & Baby",
+    ageStage: "Infant (3–12 mo)",
+    needs: ["feeding"],
+    newMomPick: true,
+    frequentlyPurchased: true,
+    addedAt: "2026-08-26",
+  },
+  {
     title: "Skip Hop Activity Center",
     url: "https://amzn.to/4qdZ0ZK",
     image: "https://m.media-amazon.com/images/I/71r51Ydo5qL._AC_UF894,1000_QL80_AIweblab1381794,T1_.jpg",
@@ -118,6 +142,7 @@ const PRODUCTS = [
     note: "the 2am congestion fix that doesn't involve your own mouth and a bulb syringe.",
     room: "Nursery & Baby",
     ageStage: "Newborn (0–3 mo)",
+    needs: ["health & soothing"],
     newMomPick: true,
     addedAt: "2026-08-14",
   },
@@ -125,10 +150,12 @@ const PRODUCTS = [
     title: "oogiebear Nose & Ear Picker",
     url: "https://amzn.to/4g0bOzI",
     image: "https://m.media-amazon.com/images/I/718OhKlOxUL._AC_UF894,1000_QL80_.jpg",
-    note: "the tiny scoop that makes newborn boogers a non-event. registry-list MVP.",
+    note: "easy to use and less abrasive on baby's nostrils.",
     room: "Nursery & Baby",
     ageStage: "Newborn (0–3 mo)",
+    needs: ["health & soothing"],
     newMomPick: true,
+    frequentlyPurchased: true,
     addedAt: "2026-08-14",
   },
   {
@@ -166,10 +193,12 @@ const PRODUCTS = [
     title: "Boiron Camilia Teething Drops",
     url: "https://amzn.to/4bMfzGn",
     image: "https://m.media-amazon.com/images/I/81w3s-+h-yL._AC_UF1000,1000_QL80_.jpg",
-    note: "the teething drops we reached for before anything stronger. gentle enough for 2am.",
+    note: "a naturopathic tincture that was a godsend through the whole teething phase — immediate relief, and only needs a few drops (less than the instructions call for).",
     room: "Nursery & Baby",
     ageStage: "Infant (3–12 mo)",
+    needs: ["health & soothing"],
     newMomPick: true,
+    frequentlyPurchased: true,
     addedAt: "2026-08-14",
   },
   {
@@ -179,7 +208,9 @@ const PRODUCTS = [
     note: "the one diaper cream that actually clears a rash overnight.",
     room: "Nursery & Baby",
     ageStage: "Newborn (0–3 mo)",
+    needs: ["health & soothing"],
     newMomPick: true,
+    frequentlyPurchased: true,
     addedAt: "2026-08-14",
   },
   {
